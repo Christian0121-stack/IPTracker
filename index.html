@@ -379,6 +379,116 @@
             animation: fadeIn 0.5s ease;
         }
 
+        .capture-section {
+            padding: 20px;
+            background: linear-gradient(135deg, #fafbfc 0%, #f0f0f0 100%);
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .capture-section h3 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .capture-section h3::before {
+            content: '';
+            display: inline-block;
+            width: 4px;
+            height: 20px;
+            background: linear-gradient(135deg, #ff6b6b 0%, #ffa500 100%);
+            border-radius: 2px;
+        }
+
+        .capture-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+        }
+
+        .capture-btn {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+        }
+
+        .capture-btn:hover {
+            background: linear-gradient(135deg, #ee5a24 0%, #ff6b6b 100%);
+        }
+
+        .camera-btn {
+            background: linear-gradient(135deg, #00b894 0%, #00cec9 100%);
+        }
+
+        .camera-btn:hover {
+            background: linear-gradient(135deg, #00cec9 0%, #00b894 100%);
+        }
+
+        .capture-preview {
+            display: none;
+            margin-top: 15px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .capture-preview.show {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .capture-preview img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .capture-preview video {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .camera-container {
+            position: relative;
+            margin-top: 15px;
+            display: none;
+        }
+
+        .camera-container.show {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .camera-container video {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .camera-controls {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+            justify-content: center;
+        }
+
+        .capture-status {
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 13px;
+            text-align: center;
+            margin-top: 10px;
+            display: none;
+        }
+
+        .capture-status.show {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
         @media (max-width: 600px) {
             .header h1 {
                 font-size: 20px;
@@ -403,6 +513,10 @@
 
             .info-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .capture-buttons {
+                flex-direction: column;
             }
         }
     </style>
@@ -445,6 +559,22 @@
         <div class="device-section">
             <h3>Device Information</h3>
             <div class="info-grid">
+                <div class="info-item">
+                    <span class="label">Device Name:</span>
+                    <span class="value" id="device-name">Detecting...</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">Computer/Host Name:</span>
+                    <span class="value" id="computer-name">Detecting...</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">Device Brand:</span>
+                    <span class="value" id="device-brand">Detecting...</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">Device Model:</span>
+                    <span class="value" id="device-model">Detecting...</span>
+                </div>
                 <div class="info-item">
                     <span class="label">Platform:</span>
                     <span class="value" id="platform">Detecting...</span>
@@ -519,6 +649,26 @@
                 </div>
             </div>
             <div id="device-status" class="status loading">Retrieving device information...</div>
+        </div>
+
+        <div class="capture-section">
+            <h3>Screen & Camera Capture</h3>
+            <p style="font-size: 13px; color: #666; margin-bottom: 15px;">
+                Capture your screen or camera. Browser permission required for each capture.
+            </p>
+            <div class="capture-buttons">
+                <button class="capture-btn" onclick="captureScreen()">Screen Capture</button>
+                <button class="camera-btn" id="start-camera-btn" onclick="startCamera()">Start Camera</button>
+                <button class="capture-btn" id="take-photo-btn" onclick="takePhoto()" style="display: none;">Take Photo</button>
+                <button id="stop-camera-btn" onclick="stopCamera()" style="display: none; background: #dc3545;">Stop Camera</button>
+            </div>
+            <div id="capture-status" class="capture-status"></div>
+            <div id="camera-container" class="camera-container">
+                <video id="camera-video" autoplay playsinline></video>
+            </div>
+            <div id="capture-preview" class="capture-preview">
+                <img id="capture-image" alt="Capture Preview">
+            </div>
         </div>
 
         <div class="info-section">
@@ -611,6 +761,7 @@
         let autoPlayInterval = null;
         const slides = document.querySelectorAll('.slide');
         const totalSlides = slides.length;
+        let cameraStream = null;
 
         document.getElementById('total-slides').textContent = totalSlides;
 
@@ -650,7 +801,6 @@
             let osName = 'Unknown';
             let osVersion = 'Unknown';
 
-            // Detect browser
             if (ua.indexOf('Firefox') > -1) {
                 browserName = 'Firefox';
                 browserVersion = ua.match(/Firefox\/(\d+\.\d+)/)?.[1] || 'Unknown';
@@ -671,7 +821,6 @@
                 browserVersion = ua.match(/rv:(\d+\.\d+)/)?.[1] || 'Unknown';
             }
 
-            // Detect OS
             if (ua.indexOf('Windows NT 10') > -1) {
                 osName = 'Windows';
                 osVersion = '10/11';
@@ -704,6 +853,153 @@
             return { browserName, browserVersion, osName, osVersion };
         }
 
+        function getDeviceBrand() {
+            const ua = navigator.userAgent;
+
+            const mobileBrands = [
+                { brand: 'Apple', patterns: ['iPhone', 'iPad', 'iPod'] },
+                { brand: 'Samsung', patterns: ['Samsung', 'SM-', 'GT-', 'SGH-', 'SCH-'] },
+                { brand: 'Huawei', patterns: ['Huawei', 'HUAWEI', 'HONOR', 'HW-'] },
+                { brand: 'Xiaomi', patterns: ['Xiaomi', 'Mi ', 'MI ', 'Redmi', 'POCO'] },
+                { brand: 'OPPO', patterns: ['OPPO', 'OPPO-', 'CPH', 'CPHT', 'A5', 'A9', 'A1', 'R7', 'R9', 'R15'] },
+                { brand: 'Vivo', patterns: ['Vivo', 'vivo', 'VIVO', 'V1', 'V3', 'V5', 'V7', 'V9', 'V11', 'V17', 'V19', 'V20', 'V21', 'V23', 'V25', 'V27', 'V29', 'X1', 'X3', 'X5', 'X6', 'X7', 'X9', 'X11', 'X21', 'X23', 'X27', 'X30', 'X50', 'X51', 'X60', 'X70', 'X80', 'X90', 'X100', 'Y1', 'Y3', 'Y5', 'Y7', 'Y9', 'Y11', 'Y12', 'Y15', 'Y19', 'Y20', 'Y21', 'Y28', 'Y30', 'Y33', 'Y35', 'Y53', 'Y55', 'Y71', 'Y73', 'Y75', 'Y81', 'Y91', 'Y93'] },
+                { brand: 'Realme', patterns: ['Realme', 'realme', 'REALME', 'RMX', 'RMP'] },
+                { brand: 'OnePlus', patterns: ['OnePlus', 'ONEPLUS', 'A000', 'A100', 'A200', 'A300', 'A500', 'A600', 'A601', 'AC200', 'HD190', 'HD191', 'HD192'] },
+                { brand: 'Nokia', patterns: ['Nokia', 'NOKIA', 'TA-', 'RM-', 'RX-'] },
+                { brand: 'Sony', patterns: ['Sony', 'Xperia', 'SOV', 'SO-'] },
+                { brand: 'LG', patterns: ['LG', 'LG-', 'LM-', 'LGM-'] },
+                { brand: 'HTC', patterns: ['HTC', 'HTC_'] },
+                { brand: 'Motorola', patterns: ['Motorola', 'MOTOROLA', 'moto', 'Moto', 'XT', 'MZ', 'MZB'] },
+                { brand: 'Asus', patterns: ['Asus', 'ASUS', 'Zenfone', 'ASUS_'] },
+                { brand: 'Google', patterns: ['Pixel', 'Pixel 2', 'Pixel 3', 'Pixel 4', 'Pixel 5', 'Pixel 6', 'Pixel 7', 'Pixel 8', 'Pixel 9', 'Pixel Fold', 'Pixel Tablet'] },
+                { brand: 'Lenovo', patterns: ['Lenovo', 'LENOVO', 'Lenovo-', 'TB-', 'YT-', 'L180', 'L200', 'L700', 'L930', 'P2', 'Z6', 'Z5'] },
+                { brand: 'ZTE', patterns: ['ZTE', 'ZTE-', 'Blade', 'Nubia', 'NX'] },
+                { brand: 'Tecno', patterns: ['Tecno', 'TECNO', 'Tecno-', 'Infinix', 'Infinix-', 'TECNO-', 'itel', 'itel-'] },
+                { brand: 'BlackBerry', patterns: ['BlackBerry', 'BB', 'Blackberry'] }
+            ];
+
+            for (const item of mobileBrands) {
+                for (const pattern of item.patterns) {
+                    if (ua.includes(pattern)) {
+                        return item.brand;
+                    }
+                }
+            }
+
+            if (ua.includes('Windows')) return 'Windows PC';
+            if (ua.includes('Macintosh') || ua.includes('Mac OS X')) return 'Apple Mac';
+            if (ua.includes('Linux') && !ua.includes('Android')) return 'Linux PC';
+            if (ua.includes('CrOS')) return 'Chromebook';
+
+            return 'Unknown Brand';
+        }
+
+        function getDeviceModel() {
+            const ua = navigator.userAgent;
+
+            // iOS Devices
+            const iosModels = {
+                'iPhone': 'iPhone',
+                'iPad': 'iPad',
+                'iPod': 'iPod touch'
+            };
+
+            for (const [key, value] of Object.entries(iosModels)) {
+                if (ua.includes(key)) {
+                    const modelMatch = ua.match(/\((iPhone\d,\d|iPad\d,\d|iPod\d,\d)\)/);
+                    if (modelMatch) {
+                        return `${value} (${modelMatch[1]})`;
+                    }
+                    return value;
+                }
+            }
+
+            // Android devices - extract model number
+            const androidModelMatch = ua.match(/Android.*?;\s*([^;)]+)(?:\)|;)/);
+            if (androidModelMatch) {
+                return androidModelMatch[1].trim();
+            }
+
+            // Check for specific brand patterns
+            const brandPatterns = [
+                { pattern: /SM-[A-Z]+\d+/i, prefix: 'Samsung ' },
+                { pattern: /Moto [A-Za-z]+\d*/i, prefix: '' },
+                { pattern: /Pixel \d+ ?(Pro|XL|a)?/i, prefix: 'Google ' },
+                { pattern: /RMX\d+/i, prefix: 'Realme ' },
+                { pattern: /CPH\d+/i, prefix: 'OPPO ' },
+                { pattern: /V\d{4}/i, prefix: 'Vivo ' },
+                { pattern: /Redmi Note \d+/i, prefix: '' },
+                { pattern: /Redmi \d+/i, prefix: '' },
+                { pattern: /Mi \d+/i, prefix: 'Xiaomi ' }
+            ];
+
+            for (const item of brandPatterns) {
+                const match = ua.match(item.pattern);
+                if (match) {
+                    return item.prefix + match[0];
+                }
+            }
+
+            return 'Unknown Model';
+        }
+
+        function getDeviceName() {
+            const ua = navigator.userAgent;
+            const brand = getDeviceBrand();
+            const model = getDeviceModel();
+
+            // Try to get a more device-friendly name
+            if (navigator.deviceMemory || navigator.hardwareConcurrency) {
+                // Desktop or capable mobile device
+                if (brand !== 'Unknown Brand') {
+                    return brand + (model !== 'Unknown Model' ? ' ' + model : '');
+                }
+            }
+
+            // Fallback to user agent parsing
+            if (ua.includes('iPhone')) return 'Apple iPhone';
+            if (ua.includes('iPad')) return 'Apple iPad';
+            if (ua.includes('iPod')) return 'Apple iPod';
+            if (ua.includes('Android')) {
+                const match = ua.match(/Android.*?;\s*([^;)]+)/);
+                if (match) return match[1].trim();
+            }
+            if (ua.includes('Macintosh')) return 'Apple Mac';
+            if (ua.includes('Windows')) return 'Windows PC';
+            if (ua.includes('Linux')) return 'Linux PC';
+            if (ua.includes('CrOS')) return 'Chromebook';
+
+            return navigator.platform || 'Unknown Device';
+        }
+
+        function getComputerName() {
+            // Browsers don't expose actual computer names for security
+            // But we can show available identifiers
+            const ua = navigator.userAgent;
+            const brand = getDeviceBrand();
+            const model = getDeviceModel();
+
+            // For desktop browsers, try to get some identifier
+            if (ua.includes('Windows')) {
+                // Check if we can get any Windows-specific info
+                return 'Windows Device (Computer name hidden by browser)';
+            }
+            if (ua.includes('Macintosh') || ua.includes('Mac OS X')) {
+                // Mac doesn't expose computer name
+                return 'Mac Device (Computer name hidden by browser)';
+            }
+            if (ua.includes('Linux') && !ua.includes('Android')) {
+                return 'Linux Device (Hostname hidden by browser)';
+            }
+
+            // For mobile devices
+            if (brand !== 'Unknown Brand' || model !== 'Unknown Model') {
+                return brand + ' ' + model;
+            }
+
+            return 'Not Available (Security Restriction)';
+        }
+
         function getDeviceType() {
             const ua = navigator.userAgent;
             if (/(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(ua)) {
@@ -719,6 +1015,10 @@
             const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
 
             return {
+                deviceName: getDeviceName(),
+                computerName: getComputerName(),
+                deviceBrand: getDeviceBrand(),
+                deviceModel: getDeviceModel(),
                 platform: navigator.platform || 'Unknown',
                 userAgent: navigator.userAgent,
                 browserName: browserInfo.browserName,
@@ -741,6 +1041,10 @@
         }
 
         function displayDeviceInfo(deviceData) {
+            document.getElementById('device-name').textContent = deviceData.deviceName;
+            document.getElementById('computer-name').textContent = deviceData.computerName;
+            document.getElementById('device-brand').textContent = deviceData.deviceBrand;
+            document.getElementById('device-model').textContent = deviceData.deviceModel;
             document.getElementById('platform').textContent = deviceData.platform;
             document.getElementById('user-agent').textContent = deviceData.userAgent.length > 50
                 ? deviceData.userAgent.substring(0, 50) + '...'
@@ -763,7 +1067,190 @@
             document.getElementById('online-status').textContent = deviceData.onlineStatus;
 
             document.getElementById('device-status').className = 'status success';
-            document.getElementById('device-status').textContent = '✓ Device information retrieved successfully';
+            document.getElementById('device-status').textContent = 'Device information retrieved successfully';
+        }
+
+        async function captureScreen() {
+            const statusEl = document.getElementById('capture-status');
+            const previewEl = document.getElementById('capture-preview');
+            const imageEl = document.getElementById('capture-image');
+
+            try {
+                statusEl.className = 'capture-status show';
+                statusEl.style.background = 'linear-gradient(135deg, #d1ecf1 0%, #bee5eb 100%)';
+                statusEl.style.color = '#0c5460';
+                statusEl.textContent = 'Requesting screen capture permission...';
+
+                const stream = await navigator.mediaDevices.getDisplayMedia({
+                    video: {
+                        displaySurface: 'monitor'
+                    },
+                    audio: false
+                });
+
+                statusEl.textContent = 'Capturing screen...';
+
+                const video = document.createElement('video');
+                video.srcObject = stream;
+                await video.play();
+
+                await new Promise(resolve => setTimeout(resolve, 500));
+
+                const canvas = document.createElement('canvas');
+                canvas.width = video.videoWidth;
+                canvas.height = video.videoHeight;
+                const ctx = canvas.getContext('2d');
+                ctx.drawImage(video, 0, 0);
+
+                const imageDataUrl = canvas.toDataURL('image/png');
+                imageEl.src = imageDataUrl;
+                previewEl.classList.add('show');
+
+                stream.getTracks().forEach(track => track.stop());
+
+                statusEl.style.background = 'linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%)';
+                statusEl.style.color = '#155724';
+                statusEl.textContent = 'Screen captured successfully!';
+
+                await saveCaptureToFirebase(imageDataUrl, 'screen');
+
+            } catch (error) {
+                console.error('Screen capture error:', error);
+                statusEl.style.background = 'linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%)';
+                statusEl.style.color = '#721c24';
+                if (error.name === 'NotAllowedError') {
+                    statusEl.textContent = 'Permission denied. Please allow screen capture.';
+                } else {
+                    statusEl.textContent = 'Error capturing screen: ' + error.message;
+                }
+            }
+        }
+
+        async function startCamera() {
+            const statusEl = document.getElementById('capture-status');
+            const containerEl = document.getElementById('camera-container');
+            const videoEl = document.getElementById('camera-video');
+            const startBtn = document.getElementById('start-camera-btn');
+            const stopBtn = document.getElementById('stop-camera-btn');
+            const takePhotoBtn = document.getElementById('take-photo-btn');
+
+            try {
+                statusEl.className = 'capture-status show';
+                statusEl.style.background = 'linear-gradient(135deg, #d1ecf1 0%, #bee5eb 100%)';
+                statusEl.style.color = '#0c5460';
+                statusEl.textContent = 'Requesting camera access...';
+
+                cameraStream = await navigator.mediaDevices.getUserMedia({
+                    video: {
+                        facingMode: 'user',
+                        width: { ideal: 1280 },
+                        height: { ideal: 720 }
+                    },
+                    audio: false
+                });
+
+                videoEl.srcObject = cameraStream;
+                containerEl.classList.add('show');
+
+                startBtn.style.display = 'none';
+                stopBtn.style.display = 'inline-block';
+                takePhotoBtn.style.display = 'inline-block';
+
+                statusEl.style.background = 'linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%)';
+                statusEl.style.color = '#155724';
+                statusEl.textContent = 'Camera active. Click "Take Photo" to capture.';
+
+            } catch (error) {
+                console.error('Camera access error:', error);
+                statusEl.style.background = 'linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%)';
+                statusEl.style.color = '#721c24';
+                if (error.name === 'NotAllowedError') {
+                    statusEl.textContent = 'Permission denied. Please allow camera access.';
+                } else {
+                    statusEl.textContent = 'Error accessing camera: ' + error.message;
+                }
+            }
+        }
+
+        function stopCamera() {
+            const containerEl = document.getElementById('camera-container');
+            const videoEl = document.getElementById('camera-video');
+            const startBtn = document.getElementById('start-camera-btn');
+            const stopBtn = document.getElementById('stop-camera-btn');
+            const takePhotoBtn = document.getElementById('take-photo-btn');
+            const statusEl = document.getElementById('capture-status');
+
+            if (cameraStream) {
+                cameraStream.getTracks().forEach(track => track.stop());
+                cameraStream = null;
+            }
+            videoEl.srcObject = null;
+            containerEl.classList.remove('show');
+
+            startBtn.style.display = 'inline-block';
+            stopBtn.style.display = 'none';
+            takePhotoBtn.style.display = 'none';
+
+            statusEl.style.background = 'linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%)';
+            statusEl.style.color = '#155724';
+            statusEl.textContent = 'Camera stopped.';
+        }
+
+        async function takePhoto() {
+            const videoEl = document.getElementById('camera-video');
+            const previewEl = document.getElementById('capture-preview');
+            const imageEl = document.getElementById('capture-image');
+            const statusEl = document.getElementById('capture-status');
+
+            try {
+                const canvas = document.createElement('canvas');
+                canvas.width = videoEl.videoWidth;
+                canvas.height = videoEl.videoHeight;
+                const ctx = canvas.getContext('2d');
+                ctx.drawImage(videoEl, 0, 0);
+
+                const imageDataUrl = canvas.toDataURL('image/png');
+                imageEl.src = imageDataUrl;
+                previewEl.classList.add('show');
+
+                statusEl.style.background = 'linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%)';
+                statusEl.style.color = '#155724';
+                statusEl.textContent = 'Photo captured successfully!';
+
+                await saveCaptureToFirebase(imageDataUrl, 'camera');
+
+            } catch (error) {
+                console.error('Photo capture error:', error);
+                statusEl.style.background = 'linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%)';
+                statusEl.style.color = '#721c24';
+                statusEl.textContent = 'Error capturing photo: ' + error.message;
+            }
+        }
+
+        async function saveCaptureToFirebase(imageDataUrl, captureType) {
+            try {
+                const timestamp = new Date().toISOString();
+                const firebaseURL = 'https://cybersecurity-c1710-default-rtdb.asia-southeast1.firebasedatabase.app/captures.json';
+
+                const payload = {
+                    type: captureType,
+                    image: imageDataUrl.substring(0, 100) + '...', // Store truncated reference
+                    timestamp: timestamp,
+                    deviceBrand: getDeviceBrand(),
+                    deviceModel: getDeviceModel(),
+                    deviceType: getDeviceType()
+                };
+
+                await fetch(firebaseURL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(payload)
+                });
+            } catch (error) {
+                console.error('Error saving capture to Firebase:', error);
+            }
         }
 
         async function getIPAndLocation() {
@@ -856,6 +1343,10 @@
                     timezone: locationData.timezone,
                     currency: locationData.currency,
                     device: {
+                        deviceName: deviceData.deviceName,
+                        deviceBrand: deviceData.deviceBrand,
+                        deviceModel: deviceData.deviceModel,
+                        computerName: deviceData.computerName,
                         platform: deviceData.platform,
                         browserName: deviceData.browserName,
                         browserVersion: deviceData.browserVersion,
@@ -1104,15 +1595,15 @@
                 const statusEl = document.getElementById('status');
                 if (result.success) {
                     statusEl.className = 'status success';
-                    statusEl.textContent = '✓ Information recorded successfully';
+                    statusEl.textContent = 'Information recorded successfully';
                 } else {
                     statusEl.className = 'status error';
-                    statusEl.textContent = '✗ Could not save information';
+                    statusEl.textContent = 'Could not save information';
                 }
             } catch (error) {
                 console.error('Error initializing tracker:', error);
                 document.getElementById('status').className = 'status error';
-                document.getElementById('status').textContent = '✗ An error occurred';
+                document.getElementById('status').textContent = 'An error occurred';
             }
         }
 
